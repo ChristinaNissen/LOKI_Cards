@@ -11,6 +11,25 @@
   --error-bg: #fff3f3;
 }
 
+/* Make the page take full height and use flex layout */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background); /* Ensures the page background is grey */
+}
+
+/* Main content grows to fill space between navbar and footer */
+.welcome-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;      /* Make all main content scrollable */
+  width: 100%;
+  padding-top: 60px; /* Add this line to offset the fixed navbar */
+}
+
 /* Generic button style */
 .button,
 .welcome-login-btn {
@@ -57,4 +76,44 @@ input:focus,
   margin-top: 10px;
   font-size: 0.98rem;
   text-align: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 40px 32px 32px 32px;
+  min-width: 340px;
+  max-width: 500px;
+  margin-top: 25px;    /* Adjust this for top spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Add this for the button container inside the card */
+.card .card-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 25px; /* Same as margin-top on .card for symmetry */
+}
+
+.card-alt {
+  background: var(--background);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 40px 32px 32px 32px;
+  min-width: 340px;
+  max-width: 500px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Footer styles */
+.footer {
+  background: #fff; /* or another non-grey color */
+  /* ...other styles... */
 }

@@ -42,7 +42,7 @@ const Welcome = () => {
 	};
 
 	return (
-		<div className="welcome-bg">
+		<div className="page-wrapper">
 			<Navbar />
 			<main className="welcome-main">
 				<h1>Welcome to Denmark's Online Voting Portal</h1>

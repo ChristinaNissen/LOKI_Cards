@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <div className="welcome-bg">
+    <div className="page-wrapper">
       <Navbar />
       <main className="welcome-main">
         <h1>Login</h1>
