@@ -37,3 +37,10 @@
   background: var(--primary-yellow);
   color: var(--primary-yellow);
 }
+
+.button:disabled {
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
+  border: none;
+}

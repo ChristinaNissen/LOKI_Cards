@@ -1,3 +1,13 @@
+.confirmation-desc {
+  color: #444;
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  min-width: 500px;
+  max-width: 620px;
+  width: 100%;
+
+}
+
 .confirmation-visual {
   margin-top: 24px;
   display: flex;
