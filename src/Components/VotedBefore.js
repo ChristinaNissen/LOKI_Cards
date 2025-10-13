@@ -5,29 +5,30 @@ import Footer from "./Footer";
 import "./Welcome.css";
 import ProcessBar from "./ProcessBar.js"; // Import your progress bar
 import Voting from "./Voting"; // Import the Voting component
-
+import VoteContext from "../Contexts/VoteContext";
+import { useContext } from "react";
 
 const VotedBefore = () => {
   const navigate = useNavigate();
-  const [userSelectedYes, setUserSelectedYes] = useState(null);
+  const { setUserSelectedYes } = useContext(VoteContext);
 
   const handleYes = () => {
     setUserSelectedYes(true);
     console.log("VotedBefore: userSelectedYes set to", true);
     // pass the value using location state
-    navigate("/selection", { state: { userSelectedYes: true } });
+    navigate("/selection");
   };
 
   const handleNo = () => {
     setUserSelectedYes(false);
     console.log("VotedBefore: userSelectedYes set to", false);
-    navigate("/voting", { state: { userSelectedYes: false } });
+    navigate("/voting");
   };
 
   const stepsNo = ["Voted Before", "Voting", "Ballot Confirmation"];
   const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Ballot Confirmation"];
   
-  console.log("VotedBefore: userSelectedYes =", userSelectedYes);
+  console.log("VotedBefore: userSelectedYes =", setUserSelectedYes);
 
   return (
     <div className="page-wrapper">
@@ -37,7 +38,7 @@ const VotedBefore = () => {
           You have successfully logged in. Please proceed with your voting process below.
         </p>
         <ProcessBar
-        steps={userSelectedYes ? stepsYes : stepsNo}
+        steps={setUserSelectedYes ? stepsYes : stepsNo}
         currentStep={1}
       />
         <div className="card">
@@ -61,7 +62,6 @@ const VotedBefore = () => {
             </button>
           </div>
         </div>
-        <Voting userSelectedYes={userSelectedYes} /> {/* Pass the state as a prop */}
       </main>
       
       <Footer />
