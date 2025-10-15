@@ -135,7 +135,7 @@
 
 
 
-.modal-backdrop {
+.modal-backdrop-voting {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.25);
@@ -145,7 +145,7 @@
   z-index: 2000;
 }
 
-.modal {
+.modal-voting {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.15);
@@ -155,7 +155,7 @@
   text-align: center;
 }
 
-.modal-actions {
+.modal-actions-voting {
   margin-top: 24px;
   display: inline-flex;
   gap: 16px;

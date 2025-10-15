@@ -116,13 +116,13 @@ const Voting = () => {
         )}
 
         {showConfirm && (
-          <div className="modal-backdrop">
-            <div className="modal">
+          <div className="modal-backdrop-voting">
+            <div className="modal-voting">
               <p style={{fontSize:"18px"}}>
                 Are you sure you want to cast your vote for{" "}
                 <strong>{selectedCandidate?.name}</strong>?
               </p>
-              <div className="modal-actions">
+              <div className="modal-actions-voting">
                 <button className="button" onClick={handleConfirm}>
                   Yes, cast vote
                 </button>
