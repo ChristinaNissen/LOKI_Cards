@@ -1,25 +1,9 @@
-.card-wide {
-  background: #fff;
-  padding: 40px 20px;  /* Same padding on top and bottom (30px) */
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;         /* Even gap between the inner elements */
-}
-
-/* Center the two boxes with no extra vertical margin since the container’s padding now does the work */
+/* Container for the two boxes */
 .box-container {
   display: flex;
   justify-content: center;
   gap: 20px;
   width: 100%;
-}
-
-/* If the Next button had its own extra margin, remove or reduce it */
-.next-button {
-  margin-top: 0;  /* Let the container’s gap control the spacing */
 }
 
 /* Box default style: light grey background */
@@ -40,24 +24,4 @@
   border: 2px solid #ffd600;             /* darker yellow */
 }
 
-/* Error overlay */
-.error-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
 
-.error-message {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  max-width: 300px;
-}

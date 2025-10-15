@@ -45,13 +45,13 @@ const VotedBefore = () => {
         <p className="text-main" style={{ marginBottom: "1px" }}>
           Please select below whether you have voted in this election before or not.
         </p>
-        <div className="card-wide">
+        <div className="card-wide" style={{ padding: "40px 20px" }}>
           <div className="box-container">
             <div
               className={`yellow-box ${selected === false ? "selected" : ""}`}
               onClick={() => handleSelect(false)}
             >
-              <p>
+              <p className="text-small">
                 <strong>No</strong>
                 <br />
                 This is my first time voting in this election
@@ -62,7 +62,7 @@ const VotedBefore = () => {
               className={`yellow-box ${selected === true ? "selected" : ""}`}
               onClick={() => handleSelect(true)}
             >
-              <p>
+              <p className="text-small">
                 <strong>Yes</strong>
                 <br />
                 I have voted before in this election

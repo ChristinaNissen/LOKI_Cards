@@ -46,11 +46,11 @@ const Welcome = () => {
 			<Navbar />
 			<main className="welcome-main">
 				<h1>Welcome to Denmark's Online Voting Portal</h1>
-				<div className="welcome-desc">
+				<div className="text-main">
 					Your secure platform for participating in democratic decision-making
 				</div>
 				<button
-					className="welcome-login-btn"
+					className="button"
 					onClick={() => navigate("/login")}
 				>
 					Login to Vote
@@ -62,7 +62,7 @@ const Welcome = () => {
 						style={{ width: "100%", borderRadius: "8px" }}
 					/>
 				</div>
-				<section className="welcome-section">
+				<section className="card" style={{ width: "500px" }}>
 					<h2>Before You Vote:</h2>
 					<div className="accordion">
 						{accordionData.map((item, idx) => (

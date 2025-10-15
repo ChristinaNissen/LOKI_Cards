@@ -66,7 +66,7 @@ const Voting = () => {
         <ProcessBar steps={steps} currentStep={currentStep} />
 
         <h1 style={{ marginTop: "70px" }}> Voting</h1>
-        <p className="voting-desc">
+        <p className="text-main">
           Please select your preferred candidate below.
         </p>
         <div className="card-wide">
@@ -118,7 +118,7 @@ const Voting = () => {
         {showConfirm && (
           <div className="modal-backdrop">
             <div className="modal">
-              <p>
+              <p style={{fontSize:"18px"}}>
                 Are you sure you want to cast your vote for{" "}
                 <strong>{selectedCandidate?.name}</strong>?
               </p>

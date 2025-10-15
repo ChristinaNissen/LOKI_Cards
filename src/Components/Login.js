@@ -22,14 +22,14 @@ const Login = ({ setIsLoggedIn }) => {
     let hasError = false;
 
     if (!userID.trim()) {
-      setUserIDError("Please enter your user ID.");
+      setUserIDError("Please enter your user ID");
       hasError = true;
     } else {
       setUserIDError("");
     }
 
     if (!password.trim()) {
-      setPasswordError("Please enter your password.");
+      setPasswordError("Please enter your password");
       hasError = true;
     } else {
       setPasswordError("");
@@ -45,7 +45,7 @@ const Login = ({ setIsLoggedIn }) => {
     <div className="page-wrapper">
       <main className="welcome-main">
         <h1>Login to your account</h1>
-        <div className="welcome-desc">
+        <div className="text-main">
           Please enter your details below to access the online voting system.
         </div>
         <div className="login-card">
@@ -85,7 +85,7 @@ const Login = ({ setIsLoggedIn }) => {
           </div>
             {passwordError && <div className="login-error">{passwordError}</div>}
 
-            <button type="submit" className="welcome-login-btn">
+            <button type="submit" className="button">
               Login
             </button>
           </form>

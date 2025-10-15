@@ -178,21 +178,13 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345}) => {
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
        <h1 style={{ marginTop: "70px" }}>Confirmation</h1>
-       <div className="confirmation-desc">
-          You have cast your ballot succesfully!
-				</div>
-         <div className="confirmation-desc">
-  Below is a visual presentation of your cast ballot.<br />
-  <span>
-    This is you need to remember in the case you want to update your vote.
-  </span>
-  <br /><br />
-  <span>
-    <strong>OBS!</strong> For security reasons, you should <strong>not share</strong>  this information with anyone and you should <strong>not save</strong> this visual presentation anywhere.
-  </span>
+       <div className="text-main">
+          You have cast your ballot succesfully! Below is a visual presentation of your cast ballot.
+
+    This is you need to remember in the case you want to update your vote. <strong>OBS!</strong> For security reasons, you should <strong>not share</strong>  this information with anyone and you should <strong>not save</strong> this visual presentation anywhere.
 </div>
 
-        <div className="card" style={{ maxWidth: 600, width: "100%" }}>
+        <div className="card-wide">
 
           <div className="confirmation-visual">
             {type === "words" && (

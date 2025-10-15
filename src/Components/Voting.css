@@ -18,3 +18,73 @@
   padding: 0 20px;  /* Side spacing */
   box-sizing: border-box;
 }
+
+.ballot-row {
+  display: flex;
+  align-items: center;
+  padding: 28px 18px;
+  background: #fff;
+  gap: 16px;
+}
+
+.ballot-row-border {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ballot-row input[type="radio"] {
+  display: inline-block;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  margin-right: 18px;
+  border: 1px solid #a59d9d;
+  border-radius: 50% !important;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative; /* ensures pseudo-element is contained */
+}
+
+.ballot-row input[type="radio"]:checked::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-yellow);
+  border: 2px solid var(--primary-yellow);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ballot-candidate {
+  flex: 1;
+  margin: 0 0 0 8px;
+  text-align: left;
+  font-weight: normal;
+  color: #444;
+  margin-bottom: 24px;
+font-size: 1.1rem;}
+
+.ballot-party {
+  margin: 0 0 0 24px;
+  min-width: 100px;
+  text-align: right;
+  font-weight: normal;
+  color: #444;
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+}
+
+.voting-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
