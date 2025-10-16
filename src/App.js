@@ -8,6 +8,7 @@ import LoginPanicPassword from './Components/Login_Panic_Password';
 import VotedBefore from './Components/VotedBefore';
 import Voting from './Components/Voting';
 import BallotConfirmation from './Components/BallotConfirmation_Card';
+import VisualSelectionPicture from './Components/VisualSelection_Picture';
 import BallotConfirmationSimple from './Components/BallotConfirmation_PanicPasswords';
 import StudyInfo2 from './Components/StudyInfo2';
 import VisualSelection from './Components/VisualSelection_Card';
@@ -15,6 +16,7 @@ import Navbar from './Components/Navbar';
 import './App.css';
 import VoteContext from "./Contexts/VoteContext";
 import PrivateModeWarning from './Components/PrivateModeWarning';
+import VisualSelection2 from './Components/Selection_Picture';
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
           <Route path="/confirmation2" element={<BallotConfirmationSimple />} />
           <Route path="/studyinfo2" element={<StudyInfo2 />} />
           <Route path="/selection" element={<VisualSelection />} />
+          <Route path="/selection2" element={<VisualSelectionPicture />} />
+
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/private-mode" element={<PrivateModeWarning />} />
         </Routes>

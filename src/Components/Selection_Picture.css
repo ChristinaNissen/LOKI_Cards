@@ -1,0 +1,26 @@
+/* Overriding the styles for picture selection items */
+.confirmation-card.visual-selection-item {
+  width: 150px;          /* fixed square width */
+  height: 150px;         /* fixed square height */
+  margin: 8px;           /* space between items */
+  padding: 0;
+  background: transparent; /* or a simple white background, if desired */
+  border: 2px solid transparent; /* transparent by default */
+  border-radius: 0;      /* no rounded corners */
+  box-shadow: none;      /* remove card-like shadow */
+  transition: border 0.2s ease-in-out;
+}
+
+/* On hover or when selected, show a yellow border */
+.confirmation-card.visual-selection-item:hover,
+.confirmation-card.visual-selection-item.selected {
+  border: 2px solid var(--primary-yellow, #ffd600);
+}
+
+/* Make sure the image fills the container */
+.confirmation-card.visual-selection-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
