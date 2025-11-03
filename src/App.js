@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ConsentForm from './Components/ConsentForm';
 import StudyInfo1 from './Components/StudyInfo1';
 import Welcome from './Components/Welcome';
@@ -60,6 +60,7 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/private-mode" element={<PrivateModeWarning />} />
           <Route path="/help" element={<Help />} />
+          <Route path="*" element={<Navigate to="/welcome" replace />} />
         </Routes>
       </VoteContext.Provider>
     </>

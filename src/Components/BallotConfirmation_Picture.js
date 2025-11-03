@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import VoteContext from "../Contexts/VoteContext";
 import { useContext } from "react";
 import { saveVisuaRepresentation, logoutVoter } from "../API/Voter";
-
+import { useState } from "react";
 
 function BallotConfirmation_Picture(setIsLoggedIn) {
   const navigate = useNavigate();
@@ -41,6 +41,8 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
          console.error("Error during logout:", error);
        }
      };
+
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   return (
     <div className="page-wrapper">
@@ -105,9 +107,24 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
         </div>
         
 
-        <button className="button" style={{ marginTop: 40 }} onClick={() => handleLogout()}>
+        <button className="button" style={{marginTop: "40px"}} onClick={() => setShowLogoutConfirm(true)}>
           Logout
         </button>
+    {showLogoutConfirm && (
+  <div className="modal-backdrop-confirmation">
+    <div className="modal-confirmation">
+      <h2>Are you sure you want to log out?</h2>
+      <p>
+        When you log out, you will not be able to view your card again.<br />
+        Make sure you have memorized your card details before proceeding.
+      </p>
+      <div style={{ display: "flex", gap: "16px", justifyContent: "center", marginTop: "16px" }}>
+        <button className="button" onClick={handleLogout}>Yes</button>
+        <button className="button" onClick={() => setShowLogoutConfirm(false)}>Cancel</button>
+      </div>
+    </div>
+  </div>
+)}
       </main>
       <Footer />
     </div>
@@ -115,4 +132,6 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
 }
 
 export default BallotConfirmation_Picture;
+
+
 
