@@ -4,6 +4,7 @@ import "./PrivateModeWarning.css";
 import Footer from "./Footer";
 import "./Voting-system.css";
 import { FaItalic } from "react-icons/fa";
+import video from "../Assets/private1.mp4";
 
 const PrivateModeWarning = () => {
   const navigate = useNavigate();
@@ -29,23 +30,35 @@ const PrivateModeWarning = () => {
             How to Enable Private Browsing
           </h2>
           <p className="text-small" style={{textAlign:"left", marginTop:"0px", marginBottom:"10px"}}>
-            The video below provides step-by-step instructions for enabling private browsing mode
-            in popular web browsers including Chrome, Firefox, and Safari.
-            The two instruction boxes below also describe how to
-            access private browsing mode.
+            Below are two simple methods to open a private browsing window in popular web browsers.
           </p>
           
-          {/* YouTube video iframe */}
-          <div style={{ marginBottom: "30px", marginTop: "20px" }}>
-            <iframe
-              width="500"
-              height="300"
-              src="https://www.youtube.com/embed/MLFPE2XpH3M"
-              title="How to Enable Private Browsing"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+          {/* Improved video layout */}
+          <div style={{ marginBottom: "30px", marginTop: "20px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <video
+              src={video}
+              loop
+              muted
+              playsInline
+              controls
+              style={{
+                width: "100%",
+                maxWidth: "600px",
+                height: "180px",
+                objectFit: "cover",
+                borderRadius: "8px",
+                background: "#000",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                marginBottom: "8px",
+                border: "1px solid #000" // Add this line
+              }}
+              onTimeUpdate={e => {
+                if (e.target.currentTime >= 5) {
+                  e.target.currentTime = 0;
+                  e.target.play();
+                }
+              }}
+            />
             <p style={{ 
               textAlign: "center", 
               marginTop: "0px",
@@ -54,17 +67,38 @@ const PrivateModeWarning = () => {
               color: "#444",
               fontStyle: "italic" 
             }}>
-              Video guide: How to enable private browsing in your browser
+              How to enable private browsing using method 1.
             </p>
           </div>
 
           {/* Two instruction methods */}
           <div style={{ display: "flex", gap: "30px", marginBottom: "20px", flexWrap: "wrap" }}>
             
-            {/* Method 1: Keyboard shortcuts */}
+           
+
+            {/* Method 2: Right-click */}
             <div style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
               <p style={{ fontWeight: "bold", fontSize: "1.1rem", marginBottom: "5px", color: "#444" }}>
                 Method 1
+              </p>
+              <p style={{ fontWeight: "600", marginBottom: "15px", fontSize: "1.1rem", color: "#444", marginTop: "0px" }}>
+                Right-Click Login Button
+              </p>
+              <div style={{ textAlign: "left" , fontSize: "1rem", color: "#444"}}>
+                <ul style={{ margin: "20px 0 15px 15px", padding: 0 }}>
+                  <li>Right-click the <em>"Login"</em> button below</li>
+                  <li>Select: <strong>"Open link in incognito window"</strong></li>
+                </ul>
+                <p>
+                  <em>Note: This feature may not be available in all browsers.</em>
+                </p>
+              </div>
+            </div>
+
+             {/* Method 1: Keyboard shortcuts */}
+            <div style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
+              <p style={{ fontWeight: "bold", fontSize: "1.1rem", marginBottom: "5px", color: "#444" }}>
+                Method 2
               </p>
               <p style={{ fontWeight: "600", fontSize: "1.1rem", color: "#444", marginTop: "0px", marginBottom: "15px" }}>
                 Use Keyboard Shortcuts
@@ -77,25 +111,6 @@ const PrivateModeWarning = () => {
                 </ul>
                 <p>
                   Then navigate to: <strong>localhost:3000/login</strong>
-                </p>
-              </div>
-            </div>
-
-            {/* Method 2: Right-click */}
-            <div style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
-              <p style={{ fontWeight: "bold", fontSize: "1.1rem", marginBottom: "5px", color: "#444" }}>
-                Method 2
-              </p>
-              <p style={{ fontWeight: "600", marginBottom: "15px", fontSize: "1.1rem", color: "#444", marginTop: "0px" }}>
-                Right-Click Login Button
-              </p>
-              <div style={{ textAlign: "left" , fontSize: "1rem", color: "#444"}}>
-                <ul style={{ margin: "20px 0 15px 15px", padding: 0 }}>
-                  <li>Right-click the <em>"Login"</em> button below</li>
-                  <li>Select: <strong>"Open link in incognito window"</strong></li>
-                </ul>
-                <p>
-                  <em>Note: This feature may not be available in all browsers.</em>
                 </p>
               </div>
             </div>
