@@ -192,7 +192,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
          <div className="intro-container">
-          <h1>Confirmation</h1>
+          <h1 className="intro-title">Confirmation</h1>
           <div className="text-main">
             You have cast your ballot succesfully! Below is a visual presentation of your cast ballot. 
           </div>
@@ -204,7 +204,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
           </div>
         </div>
         <div className="card-wide">
-          <h1 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
+          <h1 className="card-title" style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
             Card 
           </h1>
           <div
@@ -212,7 +212,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
     style={{ maxWidth: "800px", margin: "0 auto 20px auto", textAlign: "left", paddingLeft: "35px" }}
   >
     <ul>
-      <li>
+      <li> 
         You need to <strong>remember</strong> this card if you want to update your vote later in the election.
       </li>
       <li>
@@ -262,7 +262,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
               </div>
             )}
             <div className="confirmation-info">
-              <div style={{ textAlign: "center", fontWeight: "bold", marginTop: "10px", fontSize: "1.5rem" }}>
+              <div className="confirmation-card-label" style={{ textAlign: "center", fontWeight: "bold", marginTop: "10px", fontSize: "1.5rem" }}>
               {cardLabel}
             </div>
               <div className="confirmation-datetime">{dateTime}</div>

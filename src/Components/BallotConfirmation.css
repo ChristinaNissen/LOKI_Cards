@@ -187,3 +187,69 @@
   text-align: center;
 }
 
+
+
+@media (max-width: 600px) {
+  .intro-title {
+    text-align: center !important;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  .card-title{
+    text-align: center !important;
+    width: 100%;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    padding:0!important;
+    
+  }
+
+  .instruction-list.ul.li{
+    font-size:16px;
+    
+  }
+
+  .instruction-list ul,
+  .instruction-list ul li {
+    font-size: 16px !important;
+    color:#222;
+    line-height: 1.5;
+    padding-right:10px;
+    margin-bottom:0;
+  }
+
+     
+  
+
+  @media (max-width: 600px) {
+  .confirmation-card-label {
+    font-size: 17.2px !important;
+    color: #000;
+  }
+
+  .confirmation-candidate{
+    font-size: 15px !important;
+
+  }
+  .confirmation-datetime{
+        font-size: 14px !important;
+
+  }
+
+ img.image-picture{
+    max-width: 60vw !important;
+    max-height: 220px !important;
+
+  }
+}
+
+@media (max-width: 600px) {
+  img.image-word {
+    max-width: 70vw !important;
+    max-height: 210px !important;
+  }
+}
+}

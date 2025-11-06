@@ -50,7 +50,7 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
         <ProcessBar steps={steps} currentStep={currentStep} />
 
           <div className="intro-container">
-          <h1>Confirmation</h1>
+          <h1 className="intro-title">Confirmation</h1>
           <div className="text-main">
             You have cast your ballot succesfully! Below is a visual presentation of your cast ballot. 
           </div>
@@ -65,7 +65,7 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
 
 
         <div className="card-wide">
-         <h1 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
+         <h1 className="card-title"style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
             Picture 
           </h1>
 
@@ -83,12 +83,13 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
     </ul>
   </div>
           <img
+          className="image-picture"
             src={image_visual}
             alt="Visual ballot"
             style={{
               maxWidth: "100%",
               maxHeight: "400px",
-              marginTop: "30px",
+              marginTop: "0px",
               borderColor: "#c1bfbfff",
               borderWidth: "2px",
               borderStyle: "solid"
@@ -97,7 +98,7 @@ function BallotConfirmation_Picture(setIsLoggedIn) {
        
 
             <div className="confirmation-info">
-                 <div style={{fontWeight: "bold", fontSize: "1.5rem", marginTop: "10px"}}>
+                 <div className="confirmation-card-label" style={{fontWeight: "bold", fontSize: "1.5rem", marginTop: "10px"}}>
             Alpaca
           </div>
               <div className="confirmation-datetime">{dateTime}</div>

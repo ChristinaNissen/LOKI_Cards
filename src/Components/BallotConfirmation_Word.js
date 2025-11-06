@@ -51,7 +51,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
         <ProcessBar steps={steps} currentStep={currentStep} />
 
           <div className="intro-container">
-          <h1>Confirmation</h1>
+          <h1 className="intro-title">Confirmation</h1>
           <div className="text-main">
             You have cast your ballot succesfully! Below is a visual presentation of your cast ballot. 
           </div>
@@ -66,7 +66,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
 
 
         <div className="card-wide">
-         <h1 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
+         <h1 className="card-title" style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
             Word 
           </h1>
 
@@ -85,6 +85,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
   </div>
           <img
             src={word}
+            className="image-word"
             alt="Visual ballot"
             style={{
               maxWidth: "100%",
@@ -98,7 +99,7 @@ function BallotConfirmation_Word(setIsLoggedIn) {
        
 
             <div className="confirmation-info">
-                 <div style={{fontWeight: "bold", fontSize: "1.5rem", marginTop: "10px"}}>
+                 <div className="confirmation-card-label" style={{fontWeight: "bold", fontSize: "1.5rem", marginTop: "10px"}}>
             Sibling
           </div>
               <div className="confirmation-datetime">{dateTime}</div>
