@@ -116,3 +116,19 @@
 .accordion__section:first-of-type .accordion__header {
   margin-top: 0px; /* Adjust value as needed */
 }
+
+@media (width:600px){
+  .accordion__subcontent, .accordion_subheader{
+    font-size: 14.88px!important;
+  }
+}
+
+@media (max-width: 600px) {
+  .accordion_subheader,
+  .accordion__content li,
+  .accordion__content p,
+  .accordion__subcontent li, 
+  .accordion__subcontent p {
+    font-size: 14.88px !important;
+  }
+}

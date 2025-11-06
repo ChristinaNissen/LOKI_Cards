@@ -12,8 +12,8 @@ const helpSections = [
 				id: "general",
 				title: "How do I vote online?",
 				content: (
-					<div className="space-y-2">
-						<p>
+					<div>
+						<p >
 							As a Danish citizen above the age 18, you are automatically
 							eligible to vote in local and national elections.
 							You do not need to register anywhere.
