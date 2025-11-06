@@ -133,7 +133,7 @@ const VisualSelectionPicture = () => {
   let shuffledImages = shuffleArray(allImages);
 
   // Take the first 50 but ensure img5 is included.
-  let initialImages = shuffledImages.slice(0, 50);
+  let initialImages = shuffledImages.slice(0, 48);
   if (!initialImages.includes(img5)) {
     const randomIdx = Math.floor(Math.random() * initialImages.length);
     initialImages[randomIdx] = img5;

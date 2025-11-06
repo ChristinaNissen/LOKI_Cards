@@ -186,10 +186,10 @@ function generateRandomCard() {
 const PAGE_SIZE = 39;
 function getInitialCards() {
   // Generate 49 random cards
-  const randomCards = Array.from({ length: 49 }, generateRandomCard);
+  const randomCards = Array.from({ length: 47 }, generateRandomCard);
 
   // Insert staticCard at a random position
-  const insertIndex = Math.floor(Math.random() * 50);
+  const insertIndex = Math.floor(Math.random() * 48);
   randomCards.splice(insertIndex, 0, staticCard);
 
   return randomCards; // Now always 50 cards, staticCard included

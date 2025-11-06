@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import ProcessBar from "./ProcessBar.js";
@@ -176,35 +176,35 @@ const VisualSelectionWord = () => {
     fetchVisual();
   }, []);
 
+  const intervalRef = useRef();
+
   // Dynamically add new images every minute; images appended are taken sequentially from allImages.
-   useEffect(() => {
-     const intervalId = setInterval(() => {
-       setItems(prevItems => {
-         // Use the image path string for uniqueness
-         const displayed = new Set(prevItems);
-         const remainingImages = allImages.filter(img => !displayed.has(img));
-         if (remainingImages.length === 0) {
-           clearInterval(intervalId);
-           return prevItems;
-         }
-         // Shuffle remaining images
-         for (let i = remainingImages.length - 1; i > 0; i--) {
-           const j = Math.floor(Math.random() * (i + 1));
-           [remainingImages[i], remainingImages[j]] = [remainingImages[j], remainingImages[i]];
-         }
-         const count = Math.min(10, remainingImages.length);
-         const newItems = remainingImages.slice(0, count);
-         return [...prevItems, ...newItems];
-       });
-     }, 60000);
-     return () => clearInterval(intervalId);
-   }, []);
- 
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setItems(prevItems => {
+        // Find remaining images not yet in items
+        const displayed = new Set(prevItems);
+        const remainingImages = allImages.filter(img => !displayed.has(img));
+        if (remainingImages.length === 0) {
+          clearInterval(intervalRef.current);
+          return prevItems;
+        }
+        // Shuffle and take up to 10 new images
+        const shuffled = shuffleArray(remainingImages);
+        const count = Math.min(10, shuffled.length);
+        const newItems = shuffled.slice(0, count);
+        // If this addition will complete the set, clear the interval
+        if (count === remainingImages.length) {
+          clearInterval(intervalRef.current);
+        }
+        return [...prevItems, ...newItems];
+      });
+    }, 60000);
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
-  const totalPages = Math.ceil(items.length / PAGE_SIZE);
-  const pagedItems = items.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
-  // Compute filtered items
+  // 1. Filter first
   const filteredItems = items.filter(word => {
     const base = word
       .split('/').pop().split('.')[0].replace(/_/g, ' ').toLowerCase();
@@ -212,6 +212,10 @@ const VisualSelectionWord = () => {
     const matchesLetter = letterFilter === "" || base.startsWith(letterFilter.toLowerCase());
     return matchesSearch && matchesLetter;
   });
+
+  // 2. Then page
+  const totalPages = Math.ceil(filteredItems.length / PAGE_SIZE);
+  const pagedItems = filteredItems.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
   const handleSelect = (idx) => {
     setSelected(prev =>
@@ -357,53 +361,57 @@ const VisualSelectionWord = () => {
 </div>
 <hr className="filter-divider-visual" />
           <div className="visual-select-grid-pictures">
-            {filteredItems.map((imgSrc, idx) => {
-              const globalIdx = page * PAGE_SIZE + idx;
-              return (
-                <div
-                  key={globalIdx}
-                  className={`visual-selection-picture${selected.includes(globalIdx) ? " selected" : ""}`}
-                  onClick={() => handleSelect(globalIdx)}
-                  style={{
-                    cursor: "pointer",
-                    width: 180,
-                    height: 140,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "#fff",
-                    margin: "0 auto"
-                  }}
-                >
+            {pagedItems.length === 0 ? (
+              <p className="no-pictures-message">No pictures found. Try adjusting your search.</p>
+            ) : (
+              pagedItems.map((imgSrc, idx) => {
+                const globalIdx = items.indexOf(imgSrc); // Use index from items for selection
+                return (
                   <div
-                    className="picture-img-wrapper"
+                    key={globalIdx}
+                    className={`visual-selection-picture${selected.includes(globalIdx) ? " selected" : ""}`}
+                    onClick={() => handleSelect(globalIdx)}
                     style={{
-                      width: "100%",
-                      height: 90,
+                      cursor: "pointer",
+                      width: 180,
+                      height: 140,
                       display: "flex",
+                      flexDirection: "column",
                       alignItems: "center",
                       justifyContent: "center",
-                      background: "#fff"
+                      background: "#fff",
+                      margin: "0 auto"
                     }}
                   >
-                    <img
-                      src={imgSrc}
-                      alt={`visual-${globalIdx}`}
+                    <div
+                      className="picture-img-wrapper"
                       style={{
                         width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
+                        height: 90,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                         background: "#fff"
                       }}
-                    />
+                    >
+                      <img
+                        src={imgSrc}
+                        alt={`visual-${globalIdx}`}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          background: "#fff"
+                        }}
+                      />
+                    </div>
+                    <div className="picture-label" style={{ marginTop: 8, fontWeight: "bold", textAlign: "center" }}>
+                      {imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ')}
+                    </div>
                   </div>
-                  <div className="picture-label" style={{ marginTop: 8, fontWeight: "bold", textAlign: "center" }}>
-                    {imgSrc.split('/').pop().split('.')[0].replace(/_/g, ' ')}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
           <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "24px" }}>
             <button className="button" onClick={() => setPage(page - 1)} disabled={page === 0}>
