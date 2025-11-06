@@ -41,11 +41,11 @@ const VotedBefore = () => {
     <div className="page-wrapper">
       <main className="welcome-main" >
         <ProcessBar steps={selected ? stepsYes : stepsNo} currentStep={1} />
-        <h1>Have you voted in this election before?</h1>
+        <h1 className="voted-before-h1">Have you voted before in this election?</h1>
         <div className="text-main" style={{ marginBottom: "1px" }}>
           Please select below whether you have voted in this election before or not.
         </div>
-        <div className="card-wide" style={{ padding: "40px 20px" }}>
+        <div className="card-wide voted-before" style={{ padding: "40px 20px" }}>
           <div className="box-container">
             <div
               className={`yellow-box ${selected === false ? "selected" : ""}`}
@@ -71,7 +71,7 @@ const VotedBefore = () => {
           </div>
         </div>
           <div style={{ display: "flex", justifyContent: "center", marginTop: 32 }}>
-        <button className="button" onClick={handleNext}>
+        <button className="button next-voted-before" onClick={handleNext}>
             Next
           </button>
            </div>
