@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ConsentForm from './Components/Study-Info/ConsentForm';
 import StudyInfo1 from './Components/Study-Info/StudyInfo1';
@@ -36,6 +36,22 @@ function App() {
   const location = useLocation();
   const hideNavbarOn = ["/", "/studyinfo1", "/studyinfo2", "/studyinfo3"];
   const [userSelectedYes, setUserSelectedYes] = useState(false);
+  
+  // Initialize selectedImage from sessionStorage if it exists
+  const [selectedImage, setSelectedImage] = useState(() => {
+    const saved = sessionStorage.getItem('selectedImage');
+    return saved || null;
+  });
+  
+  const [selectedImageName, setSelectedImageName] = useState('');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+  // Save selectedImage to sessionStorage whenever it changes
+  useEffect(() => {
+    if (selectedImage) {
+      sessionStorage.setItem('selectedImage', selectedImage);
+    }
+  }, [selectedImage]);
 
   return (
     <>
@@ -43,7 +59,7 @@ function App() {
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
       )}
 
-      <VoteContext.Provider value={{ userSelectedYes, setUserSelectedYes }}>
+      <VoteContext.Provider value={{ userSelectedYes, setUserSelectedYes, selectedImage, setSelectedImage, selectedImageName, setSelectedImageName, selectedImageIndex, setSelectedImageIndex }}>
         <Routes>
           <Route path="/" element={<ConsentForm />} />
           <Route path="/studyinfo1" element={<StudyInfo1 />} />

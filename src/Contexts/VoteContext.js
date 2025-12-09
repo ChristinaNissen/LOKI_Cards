@@ -2,7 +2,9 @@ import { createContext } from "react";
 
 const VoteContext = createContext({
   userSelectedYes: false,
-  setUserSelectedYes: () => {}
+  setUserSelectedYes: () => {},
+  selectedImage: null,
+  setSelectedImage: () => {}
 });
 
 export default VoteContext;

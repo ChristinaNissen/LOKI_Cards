@@ -126,17 +126,17 @@ const shuffleArray = (array) => {
 };
 
 const VisualSelectionPicture = () => {
-  const { userSelectedYes } = useContext(VoteContext);
+  const { userSelectedYes, selectedImage } = useContext(VoteContext);
   const navigate = useNavigate();
 
   // Shuffle the images to randomize order
   let shuffledImages = shuffleArray(allImages);
 
-  // Take the first 50 but ensure img5 is included.
+  // Take the first 48 images and ensure the selectedImage from BallotConfirmation is included
   let initialImages = shuffledImages.slice(0, 48);
-  if (!initialImages.includes(img5)) {
+  if (selectedImage && !initialImages.includes(selectedImage)) {
     const randomIdx = Math.floor(Math.random() * initialImages.length);
-    initialImages[randomIdx] = img5;
+    initialImages[randomIdx] = selectedImage;
     // Optionally, reshuffle the subset to further randomize order:
     initialImages = shuffleArray(initialImages);
   }
@@ -243,13 +243,18 @@ const VisualSelectionPicture = () => {
       isCorrect = visualBaseNames.every((name, i) => name === selectedBaseNames[i]);
     }
 
+    console.log("Selected base names:", selectedBaseNames);
+    console.log("Visual base names:", visualBaseNames);
+    console.log("Is correct:", isCorrect);
+
     setIsCorrectSelection(isCorrect);
 
     try {
       // Save only the file names (not base names) for ballot selections
       await saveBallotSelections(selected.map(idx => items[idx].split('/').pop()));
-      await saveCorrectSelections(Boolean(isCorrectSelection));
-      console.log("Saved to DB!");
+      // Use the calculated isCorrect value directly instead of the state
+      await saveCorrectSelections(Boolean(isCorrect));
+      console.log("Saved to DB! isCorrect:", isCorrect);
       navigate("/voting", { state: { userSelectedYes } });
     } catch (error) {
       console.error("Error saving ballot selections:", error);

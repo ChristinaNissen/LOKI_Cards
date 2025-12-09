@@ -34,9 +34,9 @@ const NoPrivateMode = () => {
           </p>
         </div>
         <div className="card">
-          <h1 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 0px" }}>
+          <h2 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 0px" }}>
             How to Enable Private Browsing
-          </h1>
+          </h2>
           <p className="text-small" style={{textAlign:"left", marginTop:"0px", marginBottom:"10px"}}>
             Below are two simple methods to open a private browsing window in popular web browsers.
           </p>
@@ -49,17 +49,7 @@ const NoPrivateMode = () => {
               muted
               playsInline
               controls
-              style={{
-                width: "100%",
-                maxWidth: "600px",
-                height: "180px",
-                objectFit: "cover",
-                borderRadius: "8px",
-                background: "#000",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                marginBottom: "8px",
-                border: "1.5px solid #ccc" // Softer, lighter grey border
-              }}
+             className= "private-video"
               onTimeUpdate={e => {
                 if (e.target.currentTime >= 5) {
                   e.target.currentTime = 0;
@@ -67,14 +57,7 @@ const NoPrivateMode = () => {
                 }
               }}
             />
-            <p style={{ 
-              textAlign: "center", 
-              marginTop: "0px",
-              marginBottom: "0",
-              fontSize: "1rem", 
-              color: "#444",
-              fontStyle: "italic" 
-            }}>
+            <p className="text-small" style={{fontStyle: "italic"}}>
               How to enable private browsing using method 1.
             </p>
           </div>
@@ -85,7 +68,7 @@ const NoPrivateMode = () => {
            
 
             {/* Method 2: Right-click */}
-            <div style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
+            <div className="method-box" style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
               <p style={{ fontWeight: "bold", fontSize: "1.1rem", marginBottom: "5px", color: "#444" }}>
                 Method 1
               </p>
@@ -104,7 +87,7 @@ const NoPrivateMode = () => {
             </div>
 
              {/* Method 1: Keyboard shortcuts */}
-            <div style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
+            <div className="method-box" style={{ flex: 1, padding: "20px", backgroundColor: "#f7f7f7", borderRadius: "8px", textAlign: "center" }}>
               <p style={{ fontWeight: "bold", fontSize: "1.1rem", marginBottom: "5px", color: "#444" }}>
                 Method 2
               </p>

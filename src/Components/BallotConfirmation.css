@@ -196,8 +196,8 @@
     text-align:center!important;
   }
   .intro-container{
-   width: 80vw !important;
-    max-width: 80vw !important;
+   width: 90vw !important;
+    max-width: 90vw !important;
     margin-left: auto !important;
     margin-right: auto !important;
     padding: 0 !important;
@@ -205,10 +205,9 @@
 
   }
   .security-box{
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    width: 90% !important;
+    max-width: 90% !important;
+    margin: 20px auto !important;
     box-sizing: border-box !important;
     text-align: center !important;
 
@@ -262,17 +261,33 @@
     margin-bottom: 16px !important;
   }
   .modal-confirmation {
-    max-width: 80vw !important;
+    max-width: 85vw !important;
     min-width: 0 !important;
-    padding: 16px 16px !important;
+    padding: 20px 16px !important;
   }
 
-  .modal-confirmation.h2{
-    text-align: center!important;
+  .modal-confirmation h2 {
+    text-align: center !important;
+    font-size: 1.2rem !important;
   }
 
-  .logout-button-confirmation{
-    max-width:40vw;
+  .modal-confirmation p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    margin: 12px 0 !important;
+  }
+
+  .modal-confirmation .button {
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    width: 45% !important;
+    max-width: 150px !important;
+    min-width: 100px !important;
+  }
+
+  .logout-button-confirmation {
+    max-width: 60vw !important;
+    padding: 12px 20px !important;
   }
 
   .confirmation-visual.card-visual{

@@ -204,18 +204,20 @@
   .modal-voting-button{
     width: 80% !important;
     font-size: 1rem !important;
-    padding: 5px 0 !important;
+    padding: 14px 16px !important;
     margin: 0 0 12px 0 !important;
     box-sizing: border-box !important;
     border-radius: 8px !important;
   }
 
   .next-button-voting {
-    width: 90vw !important;
-    max-width: 320px !important;
+    width: auto !important;
+    max-width: 60vw !important;
+    min-width: 120px !important;
     margin: 0 auto !important;
     display: block !important;
     text-align: center !important;
+    padding: 12px 24px !important;
   }
 }
 

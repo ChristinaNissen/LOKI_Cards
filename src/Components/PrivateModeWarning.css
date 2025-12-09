@@ -128,18 +128,13 @@ border: 1.5px solid #ccc;
   .security-box {
     background-color: rgba(255, 255, 204, 0.8);
     border: 2px solid hsl(50, 100%, 50%);
-    padding: 8px 8px;
-    border-radius: 3px;
-    margin: 12px 2vw;
-    width: 90vw !important;
-    max-width: 90vw !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-top: 12px !important;
-    margin-bottom: 12px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding: 12px 15px !important;
+    border-radius: 4px;
+    width: 85% !important;
+    max-width: 85% !important;
+    margin: 20px auto !important;
     box-sizing: border-box !important;
+    text-align: center !important;
 
   }
 
@@ -255,11 +250,78 @@ border: 1.5px solid #ccc;
 
 
 
-  @media (max-width: 600px) {
-  .card > div[style*="background-color: #f7f7f7"] {
-    font-size: 0.93rem !important;
+  .card {
+    margin-top: 10px !important;
   }
-}
 
+  .card h1 {
+    font-size: 1.3rem !important;
+    text-align: center !important;
+    margin: 0 0 10px 0 !important;
+  }
+
+  .card p.text-small {
+    font-size: 1rem !important;
+    text-align: center !important;
+    margin-bottom: 5px !important;
+  }
+
+  .card video {
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 150px !important;
+  }
+
+  .card > div[style*="marginBottom"][style*="30px"],
+  .card > div[style*="margin-bottom"][style*="30px"] {
+    margin-bottom: 15px !important;
+  }
+
+  .card > div[style*="display: flex"][style*="gap: 30px"] {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 0 5% !important;
+  }
+
+  .card > div[style*="display: flex"][style*="flexDirection: column"] {
+    margin-bottom: 15px !important;
+  }
+
+  .card > div[style*="background-color: #f7f7f7"] {
+    font-size: 0.85rem !important;
+    padding: 12px 14px !important;
+    background-color: #fafafa !important;
+    border: 1px solid #e8e8e8 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  .card > div[style*="background-color: #f7f7f7"] h3,
+  .card > div[style*="background-color: #f7f7f7"] strong {
+    font-size: 0.85rem !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+  }
+
+  .card > div[style*="background-color: #f7f7f7"] p {
+    margin: 6px 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  .card > div[style*="background-color: #f7f7f7"] p[style*="fontSize: 1.1rem"],
+  .card > div[style*="background-color: #f7f7f7"] p[style*="font-size: 1.1rem"] {
+    font-size: 0.8rem !important;
+  }
+
+  .card > div[style*="background-color: #f7f7f7"] ul {
+    padding-left: 20px !important;
+    margin: 8px 0 6px 0 !important;
+    text-align: left !important;
+  }
+
+  .card > div[style*="background-color: #f7f7f7"] li {
+    margin-bottom: 6px !important;
+    line-height: 1.35 !important;
+  }
 }
 

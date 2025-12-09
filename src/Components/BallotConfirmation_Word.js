@@ -115,12 +115,12 @@ function BallotConfirmation_Word(setIsLoggedIn) {
       {showLogoutConfirm && (
   <div className="modal-backdrop-confirmation">
     <div className="modal-confirmation">
-      <h2>Are you sure you want to log out?</h2>
+      <p style={{ fontSize: "18px", fontWeight: "bold" }}>Are you sure you want to log out?</p>
       <p>
-        When you log out, you will not be able to view your card again.<br />
+        When you log out, you will not be able to view your word again.<br />
         Make sure you have memorized your card details before proceeding.
       </p>
-      <div style={{ display: "flex", gap: "16px", justifyContent: "center", marginTop: "16px" }}>
+      <div style={{ display: "flex", gap: "16px", justifyContent: "center", marginTop: "8px" }}>
         <button className="button" onClick={handleLogout}>Yes</button>
         <button className="button" onClick={() => setShowLogoutConfirm(false)}>Cancel</button>
       </div>

@@ -89,6 +89,14 @@
   font-size: 1.35rem;
 }
 
+.h2-info-pages {
+  font-size: 1.8rem;
+  text-align: left;
+  margin-bottom: 1rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+
 /* Make the checkbox input bigger and keep it styled nicely */
 .study-center-bg input[type="checkbox"] {
   width: 1.5em;
@@ -252,6 +260,13 @@
 
   .inner-box-info h3 {
     font-size: 1.1rem;
+  }
+
+  .h2-info-pages {
+    text-align: left !important;
+    font-size: 1.3rem;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
   }
 
   .inner-box-info p,

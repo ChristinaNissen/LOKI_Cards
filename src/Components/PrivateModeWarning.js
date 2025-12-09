@@ -25,9 +25,9 @@ const PrivateModeWarning = () => {
           </p>
         </div>
         <div className="card">
-          <h1>
+          <h2 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 0px" }}>
             How to Enable Private Browsing
-          </h1>
+          </h2>
           <p className="text-small" style={{textAlign:"left", marginTop:"0px", marginBottom:"10px"}}>
             Below are two simple methods to open a private browsing window in popular web browsers.
           </p>
