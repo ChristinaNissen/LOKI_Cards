@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import getCurrentUser, { getUserID } from "../../API/Voter";
+import getCurrentUser, { getUserID, logoutVoter } from "../../API/Voter";
 import "./study-info.css";
 
 const StudyInfo2 = () => {
@@ -86,13 +86,14 @@ const StudyInfo2 = () => {
           </button>
         </div>
 
-        <button
+         <button
           className="study-button"
           style={{ marginTop: "2rem" }}
-          onClick={() =>
-            (window.location.href =
-              "https://www.survey-xact.dk/LinkCollector?key=T5JG3UXLJ215")
-          }
+          onClick={async () => {
+            await logoutVoter();
+            window.location.href =
+              "https://www.survey-xact.dk/LinkCollector?key=T5JG3UXLJ215";
+          }}
         >
           Go to survey
         </button>

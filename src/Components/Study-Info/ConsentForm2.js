@@ -1,0 +1,220 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './study-info.css';
+
+const ConsentForm2 = () => {
+  const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChangeCheckbox = (e) => setChecked(e.target.checked);
+
+  const handleStart = () => {
+    setIsSubmitting(true);
+    // Simulate async action, then navigate
+    setTimeout(() => {
+      navigate('/studyinfo3');
+    }, 500);
+  };
+
+  return (
+    <div className="study-center-bg">
+      <div className="inner-box-info padding-top-info-page" style={{ maxWidth: "35rem" }}>
+        <h1 className="h1-info-pages">Welcome back!</h1>
+        <p>
+          In the previous part of the study, you tried an online voting system. In this part of the study, we kindly ask you to update your cast vote in the voting system. Before proceeding, we ask for you consent.
+        </p>
+        <h3 className="title-margin-top">Description of research</h3>
+        <p>
+          Before entering the voting system, you will be asked to download an
+          instruction paper for the voting system. After entering the system,
+          you are asked to test the voting system by following the instruction
+          paper. This will be followed by a questionnaire, which you will get
+          redirected to from the last page of the voting system. Once you have
+          completed the questionnaire, you will be redirected to Prolific. The
+          total duration of the study is approximately X minutes. We highly
+          recommend using a desktop device for the study.
+        </p>
+        <h3>Withdrawal</h3>
+        <p>
+          You can withdraw your consent about being part of the study at any
+          time before the completion of the study, meaning before you submit the
+          survey. In this case your collected data will be deleted by the
+          researchers. For more information on how to withdraw from a study
+          before completion in Prolific, see this link:{" "}
+          <a
+            className="info-link"
+            href="https://participant-help.prolific.co/hc/en-gb/articles/360022342094-How-do-I-withdraw-my-participation-in-a-study"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://participant-help.prolific.co/hc/en-gb/articles/360022342094-How-do-I-withdraw-my-participation-in-a-study
+          </a>
+          . Please note that we cannot delete your data after you have completed
+          the study, since the data we collect is anonymised and we therefore
+          have no chance to identify you (unless you choose to disclose
+          identifying information about yourself when using the voting system or
+          answering the questionnaire, in which case your data will be
+          anonymised as described below).
+        </p>
+        <h3 className="title-margin-top">Compensation</h3>
+        <p>
+          Each participant will receive X £ at the conclusion of the study
+          through Prolific.
+        </p>
+        <h3 className="title-margin-top">How we handle and delete the data</h3>
+        <p>
+          If a participant discloses any personal information about themselves
+          or other people in the voting system or when answering the
+          questionnaire that could lead to identification, the researchers will remove this from the dataset and
+          replace it with a placeholder.{" "}
+        </p>
+        <h3 className="title-margin-top">What data we collect</h3>
+        <p>
+          The participants will be asked to share the following personal data:
+        </p>
+        <ul className="text-margin-top">
+          <li>Gender</li>
+          <li>Age</li>
+          <li>Nationality</li>
+          <li>Level of education</li>
+        </ul>
+        <p className="text-margin-top">
+          We further collect the answers that the participants give to the
+          questions in the questionnaire, as well as data that the participants are asked to provide within
+          the voting system. Please note that all candidates on the digital
+          voting paper are fictional and the participants are asked to vote for
+          a specific candidate before they enter the voting system. Therefore,
+          we do not collect any sensitive personal data on political interests.
+        </p>
+        <h3 className="title-margin-top">How we use the data</h3>
+        <p>
+          These data will be used to derive statistical measures of users'
+          attitudes towards internet voting systems. The data might be
+          referenced or quoted, but not printed in full unless it is completely
+          anonymized, in the published research reports and other academic
+          publications.
+        </p>
+        <h3 className="title-margin-top">Who has access to the data?</h3>
+        <p>
+          The researchers have access to the original data until it has been
+          edited to replace given personal information with placeholders as to
+          anonymize it.
+        </p>
+        <h3 className="title-margin-top">Third Parties</h3>
+        <p>
+          We use the following third party services in connection with this
+          study:
+        </p>
+        <ul>
+          <li className="text-margin-top">
+            <span className="bold-text">SurveyXact:</span> We use SurveyXact to
+            carry out the survey. Personal data (gender, age, nationality, level
+            of education) will be collected through the questions and stored on
+            the SurveyXact platform. The third parties mentioned below will not
+            have access to this data. Please refer to SurveyXact’s privacy
+            policy for more information:{" "}
+            <a
+              className="info-link"
+              href="https://www.surveyxact.com/product/data-security/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.surveyxact.com/product/data-security/
+            </a>
+          </li>
+          <li className="text-margin-top">
+            <span className="bold-text">Netlify:</span> We use Netlify to host
+            the voting system. Netlify might collect your IP address and other
+            personal data, however, we will not have access to this data and
+            netlify is not sharing any IP addresses or other personal data.
+            Please refer to netlify’s privacy policy for more information:{" "}
+            <a
+              className="info-link"
+              href="https://www.netlify.com/privacy/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.netlify.com/privacy/
+            </a>
+          </li>
+          <li className="text-margin-top">
+            <span className="bold-text">Back4App:</span> We use Back4App to
+            store data connected to your testing of the voting system. This data
+            is not considered personal (unless you choose to disclose
+            identifying information about yourself when using the voting
+            system). Back4app might collect personal data which we will not have
+            access to. Please refer to Back4App’s privacy policy for more
+            information:{" "}
+            <a
+              className="info-link"
+              href="https://www.back4app.com/privacy.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.back4app.com/privacy.pdf
+            </a>
+          </li>
+        </ul>
+        <h3 className="title-margin-top">Researchers</h3>
+        <ul>
+          <li>
+            Christina Frederikke Nissen (
+            <a
+              className="info-link"
+              href="mailto:chfn@itu.dk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              chfn@itu.dk
+            </a>
+            )
+          </li>
+          <li>
+            Oksana Kulyk (
+            <a
+              className="info-link"
+              href="mailto:okku@itu.dk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              okku@itu.dk
+            </a>
+            )
+          </li>
+        </ul>
+        <p className="text-margin-top">
+          Researchers at the IT University of Copenhagen
+        </p>
+        <h3 className="title-margin-top">Questions</h3>
+        <p>
+          For any questions concerning our processing of your personal data,
+          please contact one of the students involved in the project (see
+          contact details above).
+        </p>
+        <div className="checkbox-container" style={{ margin: "2rem 0" }}>
+          <label className="check-box">
+            <input
+              type="checkbox"
+              checked={checked}
+              onChange={handleChangeCheckbox}
+              id="checkBox-vote-info"
+            />
+            I consent to serve as a subject in the research investigation
+            described above. I confirm that I am fluent in English.
+          </label>
+        </div>
+        <button
+          onClick={handleStart}
+          className="study-button"
+          disabled={!checked || isSubmitting}
+          id="submit-button"
+        >
+          {isSubmitting ? "Loading..." : "Next"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ConsentForm2;

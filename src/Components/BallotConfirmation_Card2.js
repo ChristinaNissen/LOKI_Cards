@@ -8,17 +8,18 @@ import VoteContext from "../Contexts/VoteContext";
 import { saveVisuaRepresentation, getVisualRepresentation, logoutVoter } from "../API/Voter";
 
 
-const staticCard = {
-  numberOfEmojis: 6,
-  emojiRef: "😊",
-  colorRef: "#0000ff", // blue background
+// Static card - generated using the same logic as VisualSelection_Card.js
+const staticCard2 = {
+  numberOfEmojis: 5,
+  emojiRef: "🌸",
+  colorRef: "#ffa500", // orange background
   config: {
-    columns: 2,
+    columns: 3,
     rows: 3,
     positions: [
-      [0, 0], [1, 0],
-      [0, 1], [1, 1],
-      [0, 2], [1, 2]
+      [0, 0], [2, 0], // top corners
+      [1, 1],         // center
+      [0, 2], [2, 2]  // bottom corners
     ]
   }
 };
@@ -148,7 +149,7 @@ function getEmojiGridConfig(n) {
   }
 }
 
-const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, setIsLoggedIn }) => {
+const BallotConfirmation_Card2 = ({ type = "card", ballotNumber = 12345, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { userSelectedYes } = useContext(VoteContext);
@@ -176,7 +177,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
   const handleLogout = async () => {
     try {
       // Extract only the needed properties
-      const {  colorRef, emojiRef, numberOfEmojis } = staticCard;
+      const {  colorRef, emojiRef, numberOfEmojis } = staticCard2;
       await saveVisuaRepresentation({ numberOfEmojis, emojiRef, colorRef });
       navigate("/studyinfo2");
     } catch (error) {
@@ -184,7 +185,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
     }
   };
 
-  const cardLabel = `${staticCard.colorRef === "#0000ff" ? "Blue" : ""} card with ${staticCard.numberOfEmojis} ${staticCard.emojiRef} emoji${staticCard.numberOfEmojis > 1 ? "s" : ""}`;
+  const cardLabel = `${staticCard2.colorRef === "#ffa500" ? "Orange" : ""} card with ${staticCard2.numberOfEmojis} ${staticCard2.emojiRef} emoji${staticCard2.numberOfEmojis > 1 ? "s" : ""}`;
 
   return (
     <div className="page-wrapper">
@@ -224,25 +225,25 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
               <div
                 className="confirmation-card"
                 style={{
-                  backgroundColor: staticCard.colorRef,
+                  backgroundColor: staticCard2.colorRef,
                   position: "relative"
                 }}
               >
                 <span className="card-corner card-corner-top-left">
-                  {staticCard.numberOfEmojis}
+                  {staticCard2.numberOfEmojis}
                 </span>
                 <span className="card-corner card-corner-bottom-right">
-                  {staticCard.numberOfEmojis}
+                  {staticCard2.numberOfEmojis}
                 </span>
                 <div className="emoji-area">
                   <div
                     className="confirmation-emoji-grid"
                     style={{
-                      gridTemplateColumns: `repeat(${staticCard.config.columns}, 1fr)`,
-                      gridTemplateRows: `repeat(${staticCard.config.rows}, 1fr)`
+                      gridTemplateColumns: `repeat(${staticCard2.config.columns}, 1fr)`,
+                      gridTemplateRows: `repeat(${staticCard2.config.rows}, 1fr)`
                     }}
                   >
-                    {staticCard.config.positions.map(([x, y], i) => (
+                    {staticCard2.config.positions.map(([x, y], i) => (
                       <span
                         key={i}
                         className="confirmation-emoji"
@@ -253,7 +254,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
                           justifySelf: "center"
                         }}
                       >
-                        {staticCard.emojiRef}
+                        {staticCard2.emojiRef}
                       </span>
                     ))}
                   </div>
@@ -293,5 +294,5 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
   );
 };
 
-export default BallotConfirmation;
+export default BallotConfirmation_Card2;
 
