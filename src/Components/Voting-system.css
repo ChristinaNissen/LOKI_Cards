@@ -329,8 +329,8 @@ body {
 
   /* Error overlay and message */
   .error-overlay {
-    align-items: flex-start;
-    padding-top: 20vw;
+    align-items: center;
+    padding-top: 0;
   }
 
   .error-message {

@@ -329,6 +329,13 @@ const VisualSelection = () => {
     fetchVisual();
   }, []);
 
+  // Close modal if all words are removed
+  useEffect(() => {
+    if (showConfirm && selected.length === 0) {
+      setShowConfirm(false);
+    }
+  }, [selected, showConfirm]);
+
   const filteredCards = cards.filter(card => {
     // Card number filter
     const matchesNumber = numberFilter === "" || card.numberOfEmojis === Number(numberFilter);
@@ -481,7 +488,7 @@ const VisualSelection = () => {
           </h1>
           <div className="instruction-list">
             <ul>
-              <li>You need to select all the cards below that you have seen when casting your previous ballots.</li>
+              <li>You must select <strong>all</strong> the words below that you have seen when casting your previous ballots. This includes words from both valid and invalid ballots.</li>
               <li>The system will not reveal if your selection is correct for security reasons.</li>
               <li>Only the correct selection will ensure that your vote gets updated and counted into the results.</li>
               <li>If you are unsure or cannot remember your cards, please contact election officials at your polling station.</li>
@@ -560,10 +567,10 @@ const VisualSelection = () => {
 
           <div className="selected-scroll-wrapper">
             <p className="scroll-instruction-text">
-              Use the "Next page" button below to see more cards.
+              Scroll through the cards and use the<br />"Next page" button below to see more.
             </p>
             <div className="selected-count-inside">
-              {selected.length} card{selected.length === 1 ? "" : "s"} selected
+              {selected.length} selected
             </div>
           </div>
 
@@ -711,8 +718,10 @@ const VisualSelection = () => {
   overflow: "hidden"
 }}>
   <p style={{fontSize: "18px", fontWeight: "bold"}}>
-                Please review your chosen card{selected.length > 1 ? "s" : ""} below.
-                <br /> Do you wish to proceed?
+                Please review your selected card{selected.length > 1 ? "s" : ""} below.
+              </p>
+               <p style={{fontSize: "16px", marginTop: "8px", marginBottom: "16px"}}>
+                Please verify that your selection is correct. Once confirmed, you will not receive feedback on whether this selection is correct.
               </p>
   <div className="selected-cards-preview" style={{
     flex: "1 1 auto",
@@ -755,6 +764,34 @@ const VisualSelection = () => {
                           position: "relative"
                         }}
                       >
+                        <button
+                          onClick={() => {
+                            setSelected(prev => prev.filter(i => i !== idx));
+                          }}
+                          style={{
+                            position: "absolute",
+                            top: 8,
+                            right: 8,
+                            width: 24,
+                            height: 24,
+                            borderRadius: "50%",
+                            border: "1px solid #ccc",
+                            background: "#f3f4f6",
+                            color: "#666",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: 0,
+                            lineHeight: 1,
+                            zIndex: 10,
+                          }}
+                          title="Remove this card"
+                        >
+                          ×
+                        </button>
                         <span className="card-corner card-corner-top-left" style={{ color: numberTextColor }}>{card.numberOfEmojis}</span>
                         <span className="card-corner card-corner-bottom-right" style={{ color: numberTextColor }}>{card.numberOfEmojis}</span>
                         <div className="emoji-area">
@@ -818,7 +855,7 @@ const VisualSelection = () => {
     <button 
       className="button" 
       onClick={confirmSelection}>
-      Yes, proceed
+      Confirm selection
     </button>
     <button className="button-secondary" onClick={() => setShowConfirm(false)}>
       Cancel
