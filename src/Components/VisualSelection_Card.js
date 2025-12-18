@@ -71,15 +71,6 @@ const randomEmojis = [
   "🇮🇳","🇷🇺","🇿🇦"
 ];
 
-function generateDistinctColors(n) {
-  const colors = [];
-  for (let i = 0; i < n; i++) {
-    const hue = Math.round((360 / n) * i);
-    colors.push(`hsl(${hue}, 70%, 55%)`);
-  }
-  return colors;
-}
-
 function getEmojiGridConfig(n) {
   switch (n) {
     case 1:
@@ -195,19 +186,6 @@ function getInitialCards() {
   return randomCards; // Now always 50 cards, staticCard included
 }
 
-function getColorNameFromHSL(hsl) {
-  // hsl is a string like "hsl(120, 70%, 55%)"
-  const hue = parseInt(hsl.match(/\d+/)[0], 10);
-  if (hue >= 0 && hue < 30) return "Red";
-  if (hue >= 30 && hue < 60) return "Orange";
-  if (hue >= 60 && hue < 90) return "Yellow";
-  if (hue >= 90 && hue < 150) return "Green";
-  if (hue >= 150 && hue < 210) return "Cyan";
-  if (hue >= 210 && hue < 270) return "Blue";
-  if (hue >= 270 && hue < 330) return "Purple";
-  return "Red";
-}
-
 const COLOR_LIST = [
   { name: "Red", hex: "#ff0000" },
   { name: "Blue", hex: "#0000ff" },
@@ -299,11 +277,9 @@ const VisualSelection = () => {
   const [showError, setShowError] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false); // new modal state
   const [visualRepresentation, setVisualRepresentation] = useState(null);
-  const [isCorrectSelection, setIsCorrectSelection] = useState(null);
   const [numberFilter, setNumberFilter] = useState("");
   const [colorFilter, setColorFilter] = useState("");
   const [emojiFilter, setEmojiFilter] = useState("");
-  const [search, setSearch] = useState(""); // Optional: free text search
 
   useEffect(() => {
   const interval = setInterval(() => {
@@ -348,14 +324,7 @@ const VisualSelection = () => {
     // Emoji filter
     const matchesEmoji = emojiFilter === "" || card.emojiRef === emojiFilter;
 
-    // Optional: free text search (matches color name or emoji)
-    const matchesSearch =
-      search === "" ||
-      colorName.includes(search.toLowerCase()) ||
-      card.emojiRef.includes(search) ||
-      String(card.numberOfEmojis).includes(search);
-
-    return matchesNumber && matchesColor && matchesEmoji && matchesSearch;
+    return matchesNumber && matchesColor && matchesEmoji;
   });
 
   const totalPages = Math.ceil(filteredCards.length / PAGE_SIZE);
@@ -404,8 +373,6 @@ const VisualSelection = () => {
     console.log("Selected card features:", selectedCardFeatures);
     console.log("Visual representation:", visualRepresentation);
     console.log("Is correct:", isCorrect);
-
-    setIsCorrectSelection(isCorrect);
 
     try {
       // Save ballot selections and correct selection status when user confirms

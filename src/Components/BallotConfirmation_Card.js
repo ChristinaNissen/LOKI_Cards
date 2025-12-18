@@ -5,7 +5,7 @@ import "./Voting-system.css";
 import "./BallotConfirmation.css";
 import ProcessBar from "./ProcessBar.js"; 
 import VoteContext from "../Contexts/VoteContext";
-import { saveVisuaRepresentation, getVisualRepresentation, logoutVoter } from "../API/Voter";
+import { saveVisuaRepresentation } from "../API/Voter";
 
 
 const staticCard = {
@@ -164,14 +164,6 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
   const stepsYes = ["Voted Before", "Visual Selection", "Voting", "Confirmation"];
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 4 : 3;
-
-  const randomColors = generateDistinctColors(20);
-  const emojiRef = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
-  const colorRef = randomColors[Math.floor(Math.random() * randomColors.length)];
-  const wordRef = randomWords[Math.floor(Math.random() * randomWords.length)];
-  const numberOfEmojis = Math.floor(Math.random() * 10) + 1; // 1 to 10
-  const config = getEmojiGridConfig(numberOfEmojis);
-
 
   const handleLogout = async () => {
     try {

@@ -6,7 +6,6 @@ import "./Voting.css";
 import ProcessBar from "./ProcessBar";
 import VoteContext from "../Contexts/VoteContext";
 import { saveVote, getCandidate, getBooleanSelection } from '../API/Voter.js';
-import getCurrentUser from "../API/Voter.js";
 
 
 
@@ -27,7 +26,6 @@ const Voting = () => {
   const [error, setError] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
-  const voter = getCurrentUser();
 
 
   const handleSubmit = (e) => {

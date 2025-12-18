@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ConsentForm from './Components/Study-Info/ConsentForm';
 import ConsentForm2 from './Components/Study-Info/ConsentForm2';
 import StudyInfo1 from './Components/Study-Info/StudyInfo1';
