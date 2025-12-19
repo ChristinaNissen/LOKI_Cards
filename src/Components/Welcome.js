@@ -33,11 +33,11 @@ const accordionData = [
 ];
 
 const Welcome = () => {
-	const [openIndex, setOpenIndex] = useState(null);
+	const [openItems, setOpenItems] = useState({});
 	const navigate = useNavigate();
 
 	const toggleAccordion = (idx) => {
-		setOpenIndex(openIndex === idx ? null : idx);
+		setOpenItems((prev) => ({ ...prev, [idx]: !prev[idx] }));
 	};
 
 	return (
@@ -63,16 +63,16 @@ const Welcome = () => {
 								<button
 									className="accordion-title"
 									onClick={() => toggleAccordion(idx)}
-									aria-expanded={openIndex === idx}
-								>
-									{item.title}
-									<span className="accordion-arrow">
-										{openIndex === idx ? "▲" : "▼"}
-									</span>
-								</button>
-								{openIndex === idx && (
-									<div className="accordion-content">{item.content}</div>
-								)}
+								aria-expanded={openItems[idx]}
+							>
+								{item.title}
+								<span className="accordion-arrow">
+									{openItems[idx] ? "▲" : "▼"}
+								</span>
+							</button>
+							<div className={`accordion-content ${!openItems[idx] ? 'collapsed' : ''}`}>
+								{item.content}
+							</div>
 							</div>
 						))}
 					</div>

@@ -587,11 +587,9 @@ const Help = () => {
 										{openItems[item.id] ? "▲" : "▼"}
 									</span>
 											</button>
-											{openItems[item.id] && (
-												<div className="accordion__subcontent">
-													{item.content}
-												</div>
-											)}
+										<div className={`accordion__subcontent ${!openItems[item.id] ? 'collapsed' : ''}`}>
+											{item.content}
+										</div>
 										</div>
 									))}
 								</div>

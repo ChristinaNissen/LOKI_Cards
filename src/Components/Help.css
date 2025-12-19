@@ -58,8 +58,6 @@
 
 .accordion__subheader:hover {
   background-color: #fffbe6;
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 /* Toggle arrow styling */
@@ -76,6 +74,17 @@
   color: #444;
   text-align: left;
   margin-left: 0;
+  max-height: 2000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.accordion__subcontent.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 5px;
+  border-top: none;
 }
 
 /* Additional classes (if needed) */
