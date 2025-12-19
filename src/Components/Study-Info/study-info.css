@@ -107,6 +107,42 @@
   vertical-align: middle;
 }
 
+/* Copied tooltip notification */
+.copied-tooltip {
+  position: absolute;
+  right: -10px;
+  top: -35px;
+  background: #1976d2;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: fadeInOut 3s ease-in-out;
+  z-index: 1000;
+}
+
+.copied-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #1976d2;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-5px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-5px); }
+}
+
 .blue-bg-highlight {
   color: #1976d2;
   display: inline-block;
@@ -299,6 +335,11 @@
     width: 1.8rem !important;
     font-size: 1rem !important;
     right: 6px !important;
+  }
+
+  .copied-tooltip {
+    right: 0 !important;
+    font-size: 0.75rem !important;
   }
 
   .centered-info-page > div[style*="width: 80%"] {

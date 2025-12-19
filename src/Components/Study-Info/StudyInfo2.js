@@ -6,6 +6,7 @@ import "./study-info.css";
 const StudyInfo2 = () => {
   const navigate = useNavigate();
   const [userID, setUserID] = useState(null);
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   useEffect(() => {
     const fetchUserID = async () => {
@@ -36,6 +37,10 @@ const StudyInfo2 = () => {
   function copyIdToClipBoard() {
     if (userID) {
       navigator.clipboard.writeText(userID);
+      setShowCopiedMessage(true);
+      setTimeout(() => {
+        setShowCopiedMessage(false);
+      }, 3000); // Hide after 3 seconds
     }
   }
 
@@ -101,6 +106,11 @@ const StudyInfo2 = () => {
           >
             📋
           </button>
+          {showCopiedMessage && (
+            <div className="copied-tooltip">
+              Successfully copied ✓ 
+            </div>
+          )}
         </div>
 
          <button
