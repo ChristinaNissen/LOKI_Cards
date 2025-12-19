@@ -16,7 +16,9 @@ const StudyInfo1 = () => {
 
   const handleChangeCheckbox = () => setChecked((prev) => !prev);
 
-  const downloadInstructions = () => {
+  const downloadInstructions = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     downloadFile(Instructions, "General-Election-2023.pdf");
     setDownloaded(true);
   };

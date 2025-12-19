@@ -16,11 +16,13 @@ const StudyInfo3 = () => {
 
   const handleChangeCheckbox = () => setChecked((prev) => !prev);
 
-  const downloadInstructions = () => {
-    downloadFile(Instructions, "General-Election-2023.pdf");
-    setDownloaded(true);
-  };
-
+   const downloadInstructions = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      downloadFile(Instructions, "General-Election-2023.pdf");
+      setDownloaded(true);
+    };
+  
   const handleStart = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -44,7 +46,7 @@ const StudyInfo3 = () => {
             <div className="step-number">1</div>
             <div className="step-content">
               <p>
-                All candidates are fictional. In this second part of the study, we ask you to <strong>update your vote.</strong> You can choose the same candidate as before or a different one.
+                All candidates are fictional. In this second part of the study, we ask you to <strong>update your vote</strong> in the same election from the first part. You can choose the same candidate as before or a different one.
               </p>
               <label className="check-box blue-bg-highlight">
                 <input
