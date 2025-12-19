@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import VoteContext from "../Contexts/VoteContext";
 import ProcessBar from "./ProcessBar";
@@ -11,6 +11,10 @@ const VotedBefore = () => {
   const { setUserSelectedYes } = useContext(VoteContext);
   const [selected, setSelected] = useState(null); // null means none selected yet
   const [showError, setShowError] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSelect = (value) => {
     if (selected === value) {

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import "./Voting-system.css";
@@ -26,6 +26,10 @@ const Voting = () => {
   const [error, setError] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
   const handleSubmit = (e) => {

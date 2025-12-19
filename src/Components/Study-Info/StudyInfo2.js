@@ -9,6 +9,10 @@ const StudyInfo2 = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchUserID = async () => {
       const id = await getUserID();
       setUserID(id);

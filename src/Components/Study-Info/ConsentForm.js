@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './study-info.css';
 
@@ -6,6 +6,10 @@ const ConsentForm = () => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleChangeCheckbox = (e) => setChecked(e.target.checked);
 

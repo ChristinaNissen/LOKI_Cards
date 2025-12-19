@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PrivateModeWarning.css";
 import Footer from "./Footer";
@@ -8,7 +8,9 @@ import video from "../Assets/private1.mp4";
 const PrivateModeWarning = () => {
   const navigate = useNavigate();
 
- 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="page-wrapper">

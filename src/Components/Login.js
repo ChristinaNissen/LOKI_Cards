@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import "./Login.css";
 import "./Voting-system.css";
@@ -7,6 +7,9 @@ import { FaEye, FaEyeSlash } from "react-icons/fa"; // install with: npm install
 import { addVoter, loginVoter } from '../API/Voter.js'; // Adjust path as needed
 
 const Login = ({ setIsLoggedIn }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [userID, setUserID] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import "./Voting-system.css";
@@ -28,6 +28,10 @@ const BallotConfirmation_Card2 = ({ type = "card", ballotNumber = 12345, isLogge
   const navigate = useNavigate();
   const location = useLocation();
   const { userSelectedYes } = useContext(VoteContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   // Retrieve candidate name from navigation state; fallback if not set.

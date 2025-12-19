@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import "./Welcome.css";
@@ -35,6 +35,10 @@ const accordionData = [
 const Welcome = () => {
 	const [openItems, setOpenItems] = useState({});
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	const toggleAccordion = (idx) => {
 		setOpenItems((prev) => ({ ...prev, [idx]: !prev[idx] }));

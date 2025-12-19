@@ -281,6 +281,10 @@ const VisualSelection = () => {
   const [emojiFilter, setEmojiFilter] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
   const interval = setInterval(() => {
     setCards(prevCards => {
       const remaining = 94 - prevCards.length;
