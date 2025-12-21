@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Help.css";
 import "./Voting-system.css";
 import "./Welcome.css"; // Assuming Welcome.css defines the chevron icons
