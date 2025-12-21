@@ -19,14 +19,12 @@ import NoPrivateMode from './Components/NoPrivateMode';
 import Help from './Components/Help';
 import Parse from "parse";
 
-
-//const PARSE_APPLICATION_ID = "aFtAdHBZI5s04YUs47bPYdDTlnVrRhSI9Dpl9CJ5";
-//const PARSE_HOST_URL = "https://parseapi.back4app.com/";
-//const PARSE_JAVASCRIPT_KEY = "AXphTNbNhIt6mb9NK5xa2I5SKZ0UwxyBl3aAAH1u";
-
-Parse.initialize("aFtAdHBZI5s04YUs47bPYdDTlnVrRhSI9Dpl9CJ5", "AXphTNbNhIt6mb9NK5xa2I5SKZ0UwxyBl3aAAH1u");
+// Initialize Parse SDK for Back4App
+Parse.initialize(
+  "aFtAdHBZI5s04YUs47bPYdDTlnVrRhSI9Dpl9CJ5", // Application ID
+  "AXphTNbNhIt6mb9NK5xa2I5SKZ0UwxyBl3aAAH1u" // JavaScript Key
+);
 Parse.serverURL = "https://parseapi.back4app.com/";
-//Parse.serverURL = PARSE_HOST_URL;
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

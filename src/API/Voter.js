@@ -4,26 +4,65 @@ export async function addVoter(ID, password, RandomID) {
   if (!ID || !password) {
     throw new Error("ID and password are required");
   }
-  await Parse.User.logOut();
+  
+  // Only logout if there's a current user
+  const currentUser = Parse.User.current();
+  if (currentUser) {
+    try {
+      await Parse.User.logOut();
+    } catch (logoutErr) {
+      console.warn("Logout warning:", logoutErr);
+      // Continue even if logout fails
+    }
+  }
+  
   let user = new Parse.User();
   user.set("username", ID);
   user.set("password", password);
   user.set("Candidate", "");
   user.set("BallotSelection", "");
-  user.set("TrackingID", RandomID)
+  user.set("TrackingID", RandomID);
+  
   try {
     await user.signUp();
   } catch (err) {
     console.error("addVoter error:", err, err.name, err.message, err.code);
     if (err.xhr) console.error("err.xhr:", err.xhr);
     if (err.rawResponse) console.error("rawResponse:", err.rawResponse);
+    
+    // Provide more specific error messages
+    if (err.code === 202) {
+      throw new Error("Account already exists with this username");
+    } else if (err.code === 201) {
+      throw new Error("Password and username are required");
+    }
     throw err;
   }
 }
 
 export async function loginVoter(ID, password) {
-  await Parse.User.logOut();
-  await Parse.User.logIn(ID, password);
+  // Only logout if there's a current user
+  const currentUser = Parse.User.current();
+  if (currentUser) {
+    try {
+      await Parse.User.logOut();
+    } catch (logoutErr) {
+      console.warn("Logout warning:", logoutErr);
+      // Continue even if logout fails
+    }
+  }
+  
+  try {
+    await Parse.User.logIn(ID, password);
+  } catch (err) {
+    console.error("loginVoter error:", err, err.message, err.code);
+    if (err.code === 101) {
+      throw new Error("Invalid username/password");
+    } else if (err.code === 100) {
+      throw new Error("Connection failed");
+    }
+    throw err;
+  }
 }
 
 export async function logoutVoter(){
