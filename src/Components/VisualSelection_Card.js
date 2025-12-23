@@ -436,11 +436,10 @@ const VisualSelection = () => {
           <div className="text-main text-main-confirmation" style={{ maxWidth: "800px", textAlign: "center" }}>
             Please select all cards below that you have seen when casting your previous ballots.
           </div>
-          <div className="security-box">
+          <div className="security-box" style={{ maxWidth: 800, margin: '20px auto' }}>
             <p className="text-small">
               <strong>Security Feature:</strong><br/>
-              This part of the voting system makes sure you can vote freely without any outside pressure.
-              Only you can update your vote so that your privacy is protected.
+              This process allows you to update your vote securely and privately. It helps ensure your voting decisions are made by you.
             </p>
           </div>
           {/*

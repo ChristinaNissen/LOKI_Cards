@@ -64,15 +64,15 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
          <div className="intro-container">
           <h1 className="intro-title">Confirmation</h1>
           <div className="text-main text-main-confirmation">
-            You have cast your ballot succesfully! Below is a visual presentation of your cast ballot. 
+You have cast your ballot successfully! Below is your card for this ballot.
           </div>
-          <div className="security-box">
+          <div className="security-box" style={{ maxWidth: 800, margin: '20px auto' }}>
             <p className="text-small">
               <strong>Security Feature:</strong><br/>
-              This part of the voting system ensures that you can vote freely without any outside pressure.        
+              This card is a unique visual identifier linked to your voting record. You will need to remember this card from memory if you wish to update your vote later in the election.
             </p>
           </div>
-        </div>
+            </div>
         <div className="card-wide card-confirmation">
           <h1 className="card-title" style={{ width: "100%", textAlign: "left", margin: "0 0 10px 40px" }}>
             Card 

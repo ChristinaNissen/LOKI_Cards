@@ -17,7 +17,7 @@ const PrivateModeWarning = () => {
       <main className="welcome-main ">
         <h1>Private Browsing Recommended</h1>
         <div className="text-main text-main-private">See below how to enable private browsing mode when using the voting platform.</div>
-        <div className="security-box">
+        <div className="security-box" style={{ maxWidth: 600, margin: '18px auto 24px auto' }}>
           <p className="text-small">
            <strong>Security Feature:</strong><br/>
           For your security and privacy, please use your browser's private (incognito)
@@ -26,7 +26,7 @@ const PrivateModeWarning = () => {
           </p>
         </div>
         <div className="card">
-          <h2 style={{ width: "100%", textAlign: "left", margin: "0 0 10px 0px" }}>
+          <h2 style={{ maxWidth: 600, textAlign: "left", margin: "0 0 10px 0px" }}>
             How to Enable Private Browsing
           </h2>
           <p className="text-small" style={{textAlign:"left", marginTop:"0px", marginBottom:"10px"}}>
