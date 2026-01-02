@@ -149,8 +149,8 @@ section.card {
 }
 
 section.card:hover {
-  max-width: 620px;
-  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
+  box-shadow: none !important;
+  cursor: default !important;
 }
 
 /* --- ProcessBar-style visual overview for Welcome page --- */
