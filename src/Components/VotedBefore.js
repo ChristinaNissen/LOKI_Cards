@@ -49,7 +49,7 @@ const VotedBefore = () => {
         <div className="text-main text-voted-before" style={{ marginBottom: "1px" }}>
           Please select below whether you have voted in this election before or not.
         </div>
-        <div className="security-box" style={{ maxWidth: 600, margin: '18px auto 24px auto' }}>
+        <div className="security-box-voted-before">
           <p className="text-small">
             <strong>Security Feature:</strong><br />
             For your security and privacy, please select whether you have voted before in this election. This ensures that your vote remains protected and the election process is secure for all voters.

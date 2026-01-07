@@ -43,9 +43,9 @@
 
 .confirmation-card {
   position: relative;
-  width: 220px;
-  height: 340px;
-  border-radius: 24px;
+  width: 160px;
+  height: 250px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,10 +56,10 @@
 
 .card-corner {
   position: absolute;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #fff;
-  padding: 2px 8px;
+  padding: 2px 6px;
   z-index: 2;
   /* background and border-radius removed */
 }
@@ -88,10 +88,10 @@
 
 .emoji-area {
   position: absolute;
-  top: 40px;      /* keep or slightly reduce */
-  left: 38px;
-  right: 38px;
-  bottom: 60px;   /* increase this value for more space below */
+  top: 30px;
+  left: 28px;
+  right: 28px;
+  bottom: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,14 +118,17 @@
   margin-bottom: 20px;
 }
 
-.security-box {
-  background-color: rgba(255, 255, 204, 0.8); /* Light yellow */
-  border: 2px solid #ffd600;                  /* Dark yellow border */
-  padding: 10px 15px;
-  border-radius: 4px;
-  max-width: 800px;
-  margin: 20px auto;  /* centers the box and adds vertical spacing */
+
+.security-box-confirmation {
+  max-width: 700px;
+  margin: 20px auto;
+background-color: rgba(255, 255, 204, 0.8);
+  border: 2px solid #ffe066;
+  padding: 18px 24px;
+  font-size: 1.05rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   text-align: left;
+  border-radius: 0;
 }
 
 .security-box p strong {

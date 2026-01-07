@@ -1,3 +1,31 @@
+.security-box-selection {
+  max-width: 700px;
+  width: 100%;
+  margin: 20px auto;
+ background-color: rgba(255, 255, 204, 0.8);
+  border: 2px solid #ffe066;
+  padding: 18px 24px;
+  font-size: 1.05rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  text-align: left;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.security-box-selection {
+  max-width: 700px;
+  width: 100%;
+  margin: 20px auto;
+   background-color: rgba(255, 255, 204, 0.8);
+  border: 2px solid #ffe066;
+  padding: 18px 24px;
+  font-size: 1.05rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  text-align: left;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
 .visual-selection-title {
   color: "000";
   text-align: left;
@@ -5,35 +33,38 @@
 }
 
 .visual-selection-grid-container {
-  height: 450px;  /* Fixed height for scrolling */
+  height: 550px;  /* Increased height to show multiple rows of cards */
   overflow-y: auto;
-  padding: 0 55px; /* Adjust if needed to align with header/instructions */
-  border: 1px solid #d0d0d0; /* Fine grey border */
+  padding: 15px;
+  border: 1px solid #d0d0d0;
   border-radius: 8px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .visual-selection-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns */
-  gap: 20px;  /* Adjust spacing between cards as needed */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;  /* Minimal spacing */
 }
 
 .visual-selection-item {
   cursor: pointer;
-  padding: 20px;
-  border-radius: 12px;
-  min-width: 100px;
-  min-height: 100px;
+  padding: 4px;
+  border-radius: 6px;
+  min-width: 35px;
+  min-height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background: var(--background, #ffd600);
   color: #222;
-  font-size: 48px; /* Make emojis bigger */
+  font-size: 16px; /* Smaller emojis */
   transition: background 0.2s, box-shadow 0.2s, border 0.2s;
   box-sizing: border-box;
-
 }
 
 .visual-selection-item:hover {
@@ -48,6 +79,28 @@
   box-shadow: 0 0 0 4px #ffd600;
 }
 
+.card-heading-select {
+  width: 100%;
+  text-align: left;
+  margin: 0 0 10px 40px;
+}
+
+.instruction-list {
+  margin-left: 0px;
+  width: 100%;
+  text-align: left;
+  padding-left: 35px;
+}
+
+.instruction-list ul {
+  padding-left: 20px;
+  padding-right: 40px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  list-style-position: outside;
+  text-align: left;
+}
+
 .button:disabled {
   background: #eee;
   color: #aaa;
@@ -57,9 +110,26 @@
 
 /* Container for introductory texts above the card */
 .intro-container {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto 20px auto;  /* centers the text and adds margin below */
   padding: 0 20px;
+  text-align: center;
+}
+
+.intro-heading {
+  max-width: 800px;
+  width: 800px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+.text-main-selection {
+  max-width: 800px;
+  width: 800px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: relative;
   text-align: center;
 }
 
@@ -68,22 +138,7 @@
 /* Style applied to text-main paragraphs */
 
 
-/* Security box styling (light yellow with dark yellow border) */
-.security-box {
-  background-color: rgba(255, 255, 204, 0.8); /* Light yellow */
-  border: 2px solid #ffd600;                  /* Dark yellow border */
-  padding: 10px 15px;
-  border-radius: 4px;
-  max-width: 700px;
-  margin: 20px auto;  /* centers the box and adds vertical spacing */
-  text-align: left;
-}
 
-/* Reduce gap after the strong text if needed */
-.security-box p strong {
-  display: block;
-  margin-bottom: 4px;
-}
 
 /* New styling for the selected count display */
 .selected-count {
@@ -175,23 +230,27 @@
   list-style-position: outside;
 }
 
+.instruction-list ul {
+  padding-left: 0px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  list-style-position: outside;
+}
+
 .instruction-list {
   margin-left: 0px;
-  max-width: 800px;
-  margin: 0 auto 20px auto;
-  text-align: left;
 }
 
 .card-heading-select {
   width: 100%;
   text-align: left;
-  margin: 0 0 10px 55px;
+  margin: 0 0 10px 40px;
 }
 
 .selected-count-inside {
   font-size: 1rem;
   color: #444;
-  background-color: #f3f4f6;
+  background-color: #f7f7f7;
   padding: 6px 12px;
   border-radius: 4px;
   text-align: center;
@@ -202,20 +261,27 @@
 /* Wrapper for selected count and scroll instruction */
 .selected-scroll-wrapper {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
-  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 16px;
+  justify-content: flex-start;
+  max-width: 700px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  padding-left: 0px;
+  box-sizing: border-box;
 }
 
 /* Scroll instruction text */
 .scroll-instruction-text {
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #666;
   margin: 0;
   padding: 0;
+  line-height: 1.4;
 }
 
 /* Hide scroll instruction in normal design */

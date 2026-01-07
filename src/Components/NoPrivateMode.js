@@ -20,7 +20,7 @@ const NoPrivateMode = () => {
       <main className="welcome-main">
         <h1>Private Browsing Recommended</h1>
 
-        <div className="security-box">
+        <div className="security-box-warning">
           <p className="text-small">
            <strong>Security Feature:</strong><br/>
           For your security and privacy, please use your browser's private (incognito)
