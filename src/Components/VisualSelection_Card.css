@@ -50,6 +50,41 @@
   gap: 8px;  /* Minimal spacing */
 }
 
+/* Override BallotConfirmation.css styles for cards in the selection grid */
+.visual-selection-grid .confirmation-card {
+  width: 160px !important;
+  height: 250px !important;
+  border-radius: 6px !important;
+}
+
+/* Scale down card corners (numbers) for smaller cards */
+.visual-selection-grid .card-corner {
+  font-size: 1rem !important;
+  padding: 2px 6px !important;
+}
+
+.visual-selection-grid .card-corner-top-left {
+  top: 6px !important;
+  left: 8px !important;
+}
+
+.visual-selection-grid .card-corner-bottom-right {
+  bottom: 6px !important;
+  right: 8px !important;
+}
+
+/* Adjust emoji-area for smaller cards */
+.visual-selection-grid .emoji-area {
+  position: absolute !important;
+  top: 30px !important;
+  left: 28px !important;
+  right: 28px !important;
+  bottom: 45px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .visual-selection-item {
   cursor: pointer;
   padding: 4px;
@@ -110,26 +145,20 @@
 
 /* Container for introductory texts above the card */
 .intro-container {
-  max-width: 700px;
-  margin: 0 auto 20px auto;  /* centers the text and adds margin below */
+  max-width: 800px;
+  margin: 0 auto 20px auto;
   padding: 0 20px;
   text-align: center;
 }
 
 .intro-heading {
-  max-width: 800px;
-  width: 800px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  position: relative;
+  text-align: center;
+  margin-bottom: 16px;
 }
 
 .text-main-selection {
   max-width: 800px;
-  width: 800px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  position: relative;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -482,8 +511,47 @@
 }
 
 @media (max-width: 600px) {
-  .intro-container{
-    margin:0 auto 0px auto!important;
+  .intro-container,
+  .intro-container.intro-selection {
+    width: 90vw !important;
+    max-width: 90vw !important;
+    margin: 0 auto 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+
+  .intro-heading {
+    text-align: center !important;
+    font-size: 22.4px !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  .intro-heading .break-responsive::before {
+    content: "\A";
+    white-space: pre;
+  }
+
+  .text-main.text-main-selection,
+  .text-main.text-main-confirmation.text-main-selection {
+    text-align: center !important;
+    width: 90% !important;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    transform: none !important;
+  }
+
+  .security-box-selection {
+    width: 100vw !important;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 12px 8px !important;
+    box-sizing: border-box !important;
+    font-size: 15.52px !important;
   }
 
   /* Fix card container padding and heading */
@@ -494,47 +562,66 @@
 
   .card h1,
   .card-heading-select {
-    margin: 0 0 10px 12px !important;
-    font-size: 1.3rem !important;
+    text-align: left !important;
+    margin: 0 0 10px 20px !important;
+    font-size: 22.4px !important;
     word-wrap: break-word !important;
-    padding-right: 12px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
   }
 
   .selected-count-inside {
-    font-size: 0.95rem !important;
-    padding: 5px 10px !important;
+    font-size: 15.52px !important;
+    padding: 10px 20px !important;
+    width: auto !important;
+    max-width: 95% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    font-weight: 600 !important;
   }
 
   .scroll-instruction-text {
-    font-size: 0.95rem !important;
-  }
-
-  .scroll-instruction-text br {
-    display: inline !important;
+    display: none !important;
   }
 
   .selected-scroll-wrapper {
-    flex-direction: column !important;
-    gap: 8px !important;
+    order: 10 !important;
+    flex-direction: row !important;
+    gap: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-bottom: 16px !important;
+    margin-top: 20px !important;
   }
 
   /* Fix instruction list to stay inside container */
   .instruction-list {
     max-width: 100% !important;
-    margin: 0 0 20px 0 !important;
-    padding: 0 12px !important;
+    margin: 0 20px 20px 20px !important;
+    padding-top: 12px !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .instruction-list ul {
+    font-size: 15.52px !important;
+    color: #000 !important;
+    line-height: 1.65 !important;
     padding-left: 20px !important;
-    margin: 0 !important;
+    padding-right: 8px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
     list-style-position: outside !important;
   }
 
-  .instruction-list li {
-    margin-bottom: 8px !important;
-    font-size: 0.95rem !important;
-    line-height: 1.5 !important;
+  .instruction-list ul li {
+    margin-bottom: 16px !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
   }
 
   .visual-selection-grid-container {
@@ -553,7 +640,8 @@
     grid-template-columns: 1fr !important;
     gap: 12px !important;
     padding: 10px 5px !important;
-    margin-top: 0 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     justify-items: center !important;
   }
 
@@ -582,6 +670,22 @@
 
   .card-filter-instructions {
     font-size: 15.52px !important;
+  }
+
+  .card-filter-card {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 0 auto 18px auto !important;
+    padding: 12px 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .card-filter-controls {
+    width: 100% !important;
+  }
+
+  .card-filter-row {
+    width: 100% !important;
   }
 
   .card-filter-input {
@@ -664,6 +768,40 @@
 
   .preview-item .card-corner {
     font-size: 1.1rem !important;
+  }
+
+  /* Pagination buttons responsive */
+  .pagination-buttons {
+    flex-direction: row !important;
+    gap: 16px !important;
+    width: auto !important;
+    margin: 0 auto 16px auto !important;
+    justify-content: center !important;
+    order: 11 !important;
+  }
+
+  .pagination-buttons .button {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    font-size: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+  }
+
+  /* Confirm selection button responsive */
+  .confirm-selection-button {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 14px 20px !important;
+    font-size: 1.05rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    white-space: nowrap !important;
   }
 
 }

@@ -455,15 +455,19 @@ const VisualSelection = () => {
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
         <div className="intro-container intro-selection">          <h1  className="intro-heading">
-Identification of previously cast ballots</h1>
+Identification of <span className="break-responsive">previously cast ballots</span></h1>
           <div className="text-main text-main-confirmation text-main-selection">
             Please select all cards below that you have seen when casting your previous ballots.
           </div>
           <div className="security-box-selection">
-            <p className="text-small">
-              <strong>Security Feature:</strong><br/>
-              This process allows you to update your vote securely and privately. It helps ensure your voting decisions are made by you.
+              <p className="text-small">
+              <strong>Why is this step needed?</strong><br />
+              This feature verifies your identity, ensuring that only you can update your vote by recognising the cards shown to you after your previous voting session(s).<br /><br />
+              This feature also protects against coercion. If you are pressured to vote a certain way, you can intentionally select the wrong cards to prevent your vote from being updated, without revealing your true voting history.<br /><br />
+              If you cannot remember your card(s), you can always vote in person at your local polling station.<br /><br />
+              <a href="/help#ballot-verification-security" className="faq-link">Read more in the FAQ</a>
             </p>
+
           </div>
           {/*
           <div className="text-main" style={{maxWidth: "800px", textAlign: "left"}}>
@@ -498,7 +502,7 @@ Identification of previously cast ballots</h1>
         options={numberOptions}
         value={numberOptions.find(opt => opt.value === Number(numberFilter)) || null}
         onChange={opt => setNumberFilter(opt ? String(opt.value) : "")}
-        placeholder="All numbers"
+        placeholder="Number"
         isClearable
         menuPortalTarget={document.body}
         styles={{
@@ -512,7 +516,7 @@ Identification of previously cast ballots</h1>
         options={colorOptions}
         value={colorOptions.find(opt => opt.value === colorFilter) || null}
         onChange={opt => setColorFilter(opt ? opt.value : "")}
-        placeholder="All colors"
+        placeholder="Color"
         isClearable
         menuPortalTarget={document.body}
         styles={{
@@ -526,7 +530,7 @@ Identification of previously cast ballots</h1>
         options={emojiOptions}
         value={emojiOptions.find(opt => opt.value === emojiFilter) || null}
         onChange={opt => setEmojiFilter(opt ? opt.value : "")}
-        placeholder="All emojis"
+        placeholder="Emoji"
         isClearable
         isSearchable
         menuPortalTarget={document.body}
@@ -562,7 +566,7 @@ Identification of previously cast ballots</h1>
             </div>
             
             <p className="scroll-instruction-text">
-              Scroll through the cards and use the "Next page" button below to see more.
+              Scroll through the cards and use the arrows below to see more.
             </p>
           </div>
 
@@ -672,11 +676,11 @@ Identification of previously cast ballots</h1>
           </div>
           {/* Navigation buttons below */}
           <div className="pagination-buttons" style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "16px" }}>
-            <button className="button" onClick={() => setPage(page - 1)} disabled={page === 0}>
-              ← Previous page
+            <button className="button" onClick={() => setPage(page - 1)} disabled={page === 0} aria-label="Previous page">
+              ←
             </button>
-            <button className="button" onClick={() => setPage(page + 1)} disabled={page >= totalPages - 1}>
-              Next page →
+            <button className="button" onClick={() => setPage(page + 1)} disabled={page >= totalPages - 1} aria-label="Next page">
+              →
             </button>
           </div>
         </div>

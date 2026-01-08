@@ -43,9 +43,9 @@
 
 .confirmation-card {
   position: relative;
-  width: 160px;
-  height: 250px;
-  border-radius: 20px;
+  width: 220px;
+  height: 340px;
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,10 +56,10 @@
 
 .card-corner {
   position: absolute;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #fff;
-  padding: 2px 6px;
+  padding: 2px 8px;
   z-index: 2;
   /* background and border-radius removed */
 }
@@ -88,10 +88,10 @@
 
 .emoji-area {
   position: absolute;
-  top: 30px;
-  left: 28px;
-  right: 28px;
-  bottom: 45px;
+  top: 40px;      /* keep or slightly reduce */
+  left: 38px;
+  right: 38px;
+  bottom: 60px;   /* increase this value for more space below */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +118,6 @@
   margin-bottom: 20px;
 }
 
-
 .security-box-confirmation {
   max-width: 700px;
   margin: 20px auto;
@@ -129,9 +128,11 @@ background-color: rgba(255, 255, 204, 0.8);
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   text-align: left;
   border-radius: 0;
+  box-sizing: border-box;
 }
 
-.security-box p strong {
+
+.security-box-confirmation p strong {
   display: inline !important;
   white-space: normal !important;
   margin: 0 !important;
@@ -145,15 +146,14 @@ background-color: rgba(255, 255, 204, 0.8);
 }
 
 .instruction-list ul {
-  padding-left: 0px;
+  padding-left: 20px;
   line-height: 1.6;
   font-size: 1.1rem;
-    list-style-position: outside;
-
+  list-style-position: outside;
 }
 
 .instruction-list {
-  margin-left: 0px;
+  padding-left: 35px;
 }
 
 .row-border {
@@ -197,6 +197,9 @@ background-color: rgba(255, 255, 204, 0.8);
 
   .text-main.text-main-confirmation{
     text-align:center!important;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;    
   }
   .intro-container{
    width: 90vw !important;
@@ -207,13 +210,17 @@ background-color: rgba(255, 255, 204, 0.8);
     box-sizing: border-box !important;
 
   }
-  .security-box{
-    width: 90% !important;
-    max-width: 90% !important;
-    margin: 20px auto !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
+  .security-box-confirmation{
+    width: 100vw;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px 8px;
+    box-sizing: border-box
+  }
 
+  .button.logout-button-confirmation{
+    margin-top: 20px !important;
   }
 
    .card-wide.card-confirmation {
@@ -232,33 +239,29 @@ background-color: rgba(255, 255, 204, 0.8);
     padding: 0;
   }
 
-  .card-title{
-    text-align: center !important;
+  .card-wide h1.card-title,
+  .card-wide .card-title {
     width: 100%;
-    margin-left: 0!important;
-    margin-right: 0!important;
-    padding:0!important;
-    
-  }
-
-  .instruction-list.ul.li{
-    font-size:16px;
-    
+    margin-left: 20px;
+    margin-right: 0;
   }
 
  .instruction-list {
     padding-top: 12px !important;
-    padding-bottom:0!important;
+    padding-bottom: 0 !important;
+    padding-left: 20px !important;
   }
 
   .instruction-list ul {
     font-size: 16px !important;
     color: #000;
     line-height: 1.5 !important;
-    padding-left: 5px !important;
-    padding-right:5px !important;
+    padding-left: 0 !important;
+    padding-right: 5px !important;
     margin-top: 0 !important;
-    margin-bottom: 0 !important;    
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    list-style-position: outside !important;
   }
   .instruction-list ul li {
     margin-bottom: 16px !important;
@@ -297,9 +300,19 @@ background-color: rgba(255, 255, 204, 0.8);
     margin-top:0!important;
   }
 
+  .confirmation-card {
+    width: 180px !important;
+    height: 280px !important;
+    border-radius: 20px !important;
+  }
 
-     
-  
+  .confirmation-emoji {
+    font-size: 34px !important;
+  }
+
+  .card-corner {
+    font-size: 1.2rem !important;
+  }
 
   @media (max-width: 600px) {
   .confirmation-card-label {
