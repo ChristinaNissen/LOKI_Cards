@@ -1,3 +1,13 @@
+
+/* Shift emoji grid left for cards with 5 emojis in non-responsive design */
+.confirmation-card[data-emoji-count="5"] .emoji-area {
+  left: 20px !important;
+}
+/* Center emoji grid for cards with 8 emojis by moving .emoji-area further up */
+.confirmation-card[data-emoji-count="8"] .emoji-area,
+.visual-selection-grid .confirmation-card[data-emoji-count="8"] .emoji-area {
+  top: 10px !important;
+}
 .security-box-selection {
   max-width: 700px;
   width: 100%;
@@ -16,7 +26,7 @@
   max-width: 700px;
   width: 100%;
   margin: 20px auto;
-   background-color: rgba(255, 255, 204, 0.8);
+  background-color: rgba(255, 255, 204, 0.8);
   border: 2px solid #ffe066;
   padding: 18px 24px;
   font-size: 1.05rem;
@@ -220,12 +230,13 @@
   margin-bottom: 20px;
 }
 
-/* Preview items in confirmation modal */
+/* Preview items in confirmation modal - match visual-selection-grid styling */
 .preview-item {
-  width: 220px;  /* Increased width */
-  height: 340px; /* Increased height */
-  padding: 12px;
-  margin: 8px;
+  width: 160px !important;
+  height: 250px !important;
+  border-radius: 6px !important;
+  padding: 4px;
+  margin: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -233,15 +244,16 @@
   box-sizing: border-box;
 }
 
-/* Set a fixed height for the emoji area to help center its content */
+/* Match emoji-area positioning from visual-selection-grid */
 .preview-item .emoji-area {
-  width: 70%;
-  height: 70%;           /* Fixed height – adjust the percentage as needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  /* Remove margin auto if present */
+  position: absolute !important;
+  top: 30px !important;
+  left: 28px !important;
+  right: 28px !important;
+  bottom: 45px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Let the emoji grid fill the emoji area and center its items */
@@ -250,6 +262,22 @@
   height: 100%;
   display: grid;
   place-items: center;
+}
+
+/* Match card corner styling from visual-selection-grid */
+.preview-item .card-corner {
+  font-size: 1rem !important;
+  padding: 2px 6px !important;
+}
+
+.preview-item .card-corner-top-left {
+  top: 6px !important;
+  left: 8px !important;
+}
+
+.preview-item .card-corner-bottom-right {
+  bottom: 6px !important;
+  right: 8px !important;
 }
 
 .instruction-list ul {
@@ -609,8 +637,8 @@
   .instruction-list ul {
     font-size: 15.52px !important;
     color: #000 !important;
-    line-height: 1.65 !important;
-    padding-left: 20px !important;
+    line-height: 1.4 !important;
+    padding-left: 40px !important;
     padding-right: 8px !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
@@ -699,7 +727,11 @@
   }
 
   .card-label {
-    font-size: 16px !important;
+  font-size: 15.52px !important;
+  /* Always use inline font-size for .confirmation-emoji */
+  .confirmation-emoji {
+    font-size: inherit !important;
+  }
   }
 
   /* Modal responsive styling */
@@ -730,44 +762,51 @@
     padding: 11px 24px !important;
   }
 
-  /* Preview card emoji centering in modal */
+  /* Preview card emoji centering in modal - match grid styling exactly */
   .preview-item {
-    width: 180px !important;
-    height: 280px !important;
-    padding: 10px !important;
+    width: 160px !important;
+    height: 250px !important;
+    border-radius: 6px !important;
+    padding: 4px !important;
     margin: 4px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   .preview-item .emoji-area {
-    position: static !important;
-    width: 100% !important;
-    height: 70% !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
+    position: absolute !important;
+    top: 30px !important;
+    left: 28px !important;
+    right: 28px !important;
+    bottom: 45px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 0 !important;
   }
 
   .preview-item .confirmation-emoji-grid {
-    display: grid !important;
-    align-items: center !important;
-    justify-items: center !important;
-    align-content: center !important;
-    justify-content: center !important;
     width: 100% !important;
     height: 100% !important;
+    display: grid !important;
+    place-items: center !important;
   }
 
   .preview-item .card-corner {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .preview-item .card-corner-top-left {
+    top: 6px !important;
+    left: 8px !important;
+  }
+
+  .preview-item .card-corner-bottom-right {
+    bottom: 6px !important;
+    right: 8px !important;
   }
 
   /* Pagination buttons responsive */
@@ -803,5 +842,8 @@
     margin-right: auto !important;
     white-space: nowrap !important;
   }
+  .confirmation-card[data-emoji-count="5"] .emoji-area {
+  left: 30px !important;
+}
 
 }

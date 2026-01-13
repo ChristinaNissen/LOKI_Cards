@@ -1,3 +1,16 @@
+
+  .confirmation-emoji-grid {
+    gap: 18px !important;
+  }
+
+/* Center emojis for cards with 5 emojis - non-responsive only */
+.confirmation-card[data-emoji-count="5"] > .emoji-area {
+  left: 30px !important;
+  right: 30px !important;
+  top: 48px !important;
+  bottom: 68px !important;
+}
+
 .confirmation-desc {
   color: #444;
   font-size: 1.2rem;
@@ -104,12 +117,9 @@
   display: grid;
   gap: 8px;
   place-items: center;
+  margin-left: 0!important;
 }
 
-.confirmation-emoji {
-  font-size: 36px;
-  line-height: 1;
-}
 
 .confirmation-datetime {
   text-align: center;
@@ -241,9 +251,9 @@ background-color: rgba(255, 255, 204, 0.8);
 
   .card-wide h1.card-title,
   .card-wide .card-title {
-    width: 100%;
-    margin-left: 20px;
-    margin-right: 0;
+    width: 100%!important;
+    margin-left: 20px!important;
+    margin-right: 0!important;
   }
 
  .instruction-list {
@@ -255,12 +265,11 @@ background-color: rgba(255, 255, 204, 0.8);
   .instruction-list ul {
     font-size: 16px !important;
     color: #000;
-    line-height: 1.5 !important;
     padding-left: 0 !important;
     padding-right: 5px !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    margin-left: 0 !important;
+    margin-left: 20 !important;
     list-style-position: outside !important;
   }
   .instruction-list ul li {
@@ -292,7 +301,7 @@ background-color: rgba(255, 255, 204, 0.8);
   }
 
   .logout-button-confirmation {
-    max-width: 60vw !important;
+    max-width: 30vw !important;
     padding: 12px 20px !important;
   }
 
@@ -301,22 +310,62 @@ background-color: rgba(255, 255, 204, 0.8);
   }
 
   .confirmation-card {
-    width: 180px !important;
-    height: 280px !important;
-    border-radius: 20px !important;
+    width: 140px !important;
+    height: 210px !important;
+    border-radius: 14px !important;
+    padding: 8px 0 !important;
   }
 
-  .confirmation-emoji {
-    font-size: 34px !important;
+  .confirmation-card .emoji-area {
+    top: 22px !important;
+    left: 20px !important;
+    right: 20px !important;
+    bottom: 32px !important;
+  }
+
+  .confirmation-card[data-emoji-count="5"] > .emoji-area {
+    top: 28px !important;
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 38px !important;
+  }
+
+  .confirmation-card .confirmation-emoji {
+    font-size: 30px !important;
+  }
+
+  .confirmation-card .confirmation-emoji-grid {
+    gap: 4px !important;
   }
 
   .card-corner {
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
+    padding: 1px 5px !important;
+  }
+
+  .card-corner-top-left {
+    top: 5px !important;
+    left: 7px !important;
+  }
+
+  .card-corner-bottom-right {
+    bottom: 5px !important;
+    right: 7px !important;
+  }
+
+  .confirmation-main {
+    font-size: 36px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .confirmation-date {
+    font-size: 13px !important;
+    margin-top: 4px !important;
   }
 
   @media (max-width: 600px) {
   .confirmation-card-label {
-    font-size: 17.2px !important;
+    font-size: 15.52px !important;
     color: #000;
   }
 
@@ -341,5 +390,6 @@ background-color: rgba(255, 255, 204, 0.8);
     max-width: 70vw !important;
     max-height: 210px !important;
   }
+
 }
 }

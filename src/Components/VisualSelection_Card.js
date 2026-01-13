@@ -82,6 +82,7 @@ function getEmojiGridConfig(n) {
     case 4:
       return { columns: 2, rows: 2, positions: [[0, 0], [1, 0], [0, 1], [1, 1]] };
     case 5:
+      // 3x3 grid, cross pattern for centering
       return {
         columns: 3,
         rows: 3,
@@ -134,19 +135,6 @@ function getEmojiGridConfig(n) {
           [0, 2], [1, 2], [2, 2]
         ]
       };
-    case 10:
-      return {
-        columns: 2,
-        rows: 7,
-        positions: [
-          [0, 0], [1, 0],
-          [0.5, 1],
-          [0, 2], [1, 2],
-          [0, 3], [1, 3],
-          [0.5, 4],
-          [0, 5], [1, 5]
-        ]
-      };
     default:
       const columns = Math.ceil(Math.sqrt(n));
       const rows = Math.ceil(n / columns);
@@ -165,7 +153,7 @@ function getEmojiGridConfig(n) {
 }
 
 function generateRandomCard() {
-  const numberOfEmojis = Math.floor(Math.random() * 10) + 1;
+  const numberOfEmojis = Math.floor(Math.random() * 9) + 1;
   const emojiRef = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
   const colorObj = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)];
   const colorRef = colorObj.hex;
@@ -175,7 +163,7 @@ function generateRandomCard() {
 
 const PAGE_SIZE = 39;
 function getInitialCards() {
-  // Generate 49 random cards
+  // Generate 47 random cards
   const randomCards = Array.from({ length: 47 }, generateRandomCard);
 
   // Insert staticCard at a random position
@@ -315,7 +303,7 @@ const VisualSelection = () => {
         clearInterval(interval);
         return prevCards;
       }
-      const count = Math.min(10, remaining);
+      const count = Math.min(9, remaining);
       return [...prevCards, ...Array.from({ length: count }, generateRandomCard)];
     });
   }, 60000);
@@ -455,17 +443,14 @@ const VisualSelection = () => {
       <main className="welcome-main">
         <ProcessBar steps={steps} currentStep={currentStep} />
         <div className="intro-container intro-selection">          <h1  className="intro-heading">
-Identification of <span className="break-responsive">previously cast ballots</span></h1>
+Identification of <span className="break-responsive">Previously Cast Ballots</span></h1>
           <div className="text-main text-main-confirmation text-main-selection">
             Please select all cards below that you have seen when casting your previous ballots.
           </div>
           <div className="security-box-selection">
               <p className="text-small">
-              <strong>Why is this step needed?</strong><br />
-              This feature verifies your identity, ensuring that only you can update your vote by recognising the cards shown to you after your previous voting session(s).<br /><br />
-              This feature also protects against coercion. If you are pressured to vote a certain way, you can intentionally select the wrong cards to prevent your vote from being updated, without revealing your true voting history.<br /><br />
-              If you cannot remember your card(s), you can always vote in person at your local polling station.<br /><br />
-              <a href="/help#ballot-verification-security" className="faq-link">Read more in the FAQ</a>
+              <strong>Security Feature:</strong><br/>
+              This process allows you to update your vote securely and privately. It helps ensure your voting decisions are made by you.
             </p>
 
           </div>
@@ -605,6 +590,7 @@ Identification of <span className="break-responsive">previously cast ballots</sp
         <div className="visual-selection-card-container" key={globalIdx}>
           <div
             className={`confirmation-card visual-selection-item${selected.includes(globalIdx) ? " selected" : ""}`}
+            data-emoji-count={card.numberOfEmojis}
             style={{
               backgroundColor: card.colorRef,
               position: "relative",
@@ -635,17 +621,16 @@ Identification of <span className="break-responsive">previously cast ballots</sp
                 {card.config.positions.map(([x, y], i) => {
                   let fontSize;
                   switch (card.numberOfEmojis) {
-                    case 1: fontSize = "58px"; break;
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9: fontSize = "33px"; break;
-                    case 10: fontSize = "23px"; break;
-                    default: fontSize = "26px";
+                    case 1: fontSize = "64px"; break;
+                    case 2: fontSize = "44px"; break;
+                    case 3: fontSize = "38px"; break;
+                    case 4: fontSize = "34px"; break;
+                    case 5: fontSize = "28px"; break;
+                    case 6: fontSize = "26px"; break;
+                    case 7: fontSize = "24px"; break;
+                    case 8: fontSize = "24px"; break;
+                    case 9: fontSize = "18px"; break;
+                    default: fontSize = "30px";
                   }
                   return (
                     <span
@@ -714,17 +699,17 @@ Identification of <span className="break-responsive">previously cast ballots</sp
   overflow: "hidden"
 }}>
   <p style={{fontSize: "18px", fontWeight: "bold"}}>
-                Please review your selected card{selected.length > 1 ? "s" : ""} below.
+                Please review your selected card{selected.length > 1 ? "s" : ""} below
               </p>
-               <p style={{fontSize: "16px", marginTop: "8px", marginBottom: "16px"}}>
-                Please verify that your selection is correct. Once confirmed, you will not receive feedback on whether this selection is correct.
+               <p style={{fontSize: "16px", marginTop: "0px", marginBottom: "16px"}}>
+                Please verify that your selection is correct. <br></br> Once confirmed, you will not receive feedback on whether this selection is correct.
               </p>
   <div className="selected-cards-preview" style={{
     flex: "1 1 auto",
     overflowY: "auto",
     display: "flex",
     flexWrap: "wrap",
-    gap: 24,
+    gap: 0,
     justifyContent: "center",
     alignItems: "flex-start",
     marginBottom: 8,
@@ -755,6 +740,7 @@ Identification of <span className="break-responsive">previously cast ballots</sp
                     >
                       <div
                         className="confirmation-card preview-item"
+                        data-emoji-count={card.numberOfEmojis}
                         style={{
                           backgroundColor: card.colorRef,
                           position: "relative"
@@ -801,17 +787,16 @@ Identification of <span className="break-responsive">previously cast ballots</sp
                             {card.config.positions.map(([x, y], i) => {
                               let fontSize;
                               switch (card.numberOfEmojis) {
-                                case 1: fontSize = "60px"; break;
-                                case 2:
-                                case 3:
-                                case 4:
-                                case 5:
-                                case 6:
-                                case 7:
-                                case 8:
-                                case 9: fontSize = "34px"; break;
-                                case 10: fontSize = "24px"; break;
-                                default: fontSize = "28px";
+                                case 1: fontSize = "64px"; break;
+                                case 2: fontSize = "44px"; break;
+                                case 3: fontSize = "38px"; break;
+                                case 4: fontSize = "34px"; break;
+                                case 5: fontSize = "28px"; break;
+                                case 6: fontSize = "26px"; break;
+                                case 7: fontSize = "24px"; break;
+                                case 8: fontSize = "24px"; break;
+                                case 9: fontSize = "18px"; break;
+                                default: fontSize = "30px";
                               }
                               return (
                                 <span

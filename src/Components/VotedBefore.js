@@ -80,7 +80,7 @@ const VotedBefore = () => {
             </div>
           </div>
         </div>
-          <div style={{ display: "flex", justifyContent: "center", marginTop: 32 }}>
+          <div>
         <button className="button next-voted-before" onClick={handleNext}>
             Next
           </button>

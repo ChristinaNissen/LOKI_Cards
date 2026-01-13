@@ -10,16 +10,14 @@ import { saveVisuaRepresentation } from "../API/Voter";
 
 // Static card - generated using the same logic as VisualSelection_Card.js
 const staticCard2 = {
-  numberOfEmojis: 5,
+  numberOfEmojis: 3,
   emojiRef: "🌸",
   colorRef: "#ffa500", // orange background
   config: {
-    columns: 3,
+    columns: 1,
     rows: 3,
     positions: [
-      [0, 0], [2, 0], // top corners
-      [1, 1],         // center
-      [0, 2], [2, 2]  // bottom corners
+      [0, 0], [0, 1], [0, 2]
     ]
   }
 };
@@ -65,7 +63,7 @@ const BallotConfirmation_Card2 = ({ type = "card", ballotNumber = 12345, isLogge
          <div className="intro-container">
           <h1 className="intro-title">Confirmation</h1>
           <div className="text-main text-main-confirmation">
-You have cast your ballot successfully! Below is your card for this ballot.
+You have cast your ballot successfully! Below is a visual presentation of your cast ballot.
           </div>
           <div className="security-box-confirmation">
             <p className="text-small">
@@ -95,6 +93,7 @@ You have cast your ballot successfully! Below is your card for this ballot.
             {type === "card" && (
               <div
                 className="confirmation-card"
+                data-emoji-count={staticCard2.numberOfEmojis}
                 style={{
                   backgroundColor: staticCard2.colorRef,
                   position: "relative"

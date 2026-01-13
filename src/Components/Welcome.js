@@ -65,7 +65,7 @@ const Welcome = () => {
 
 
 				<section className="card" style={{ maxWidth: "800px" }}>
-					<div className="info-list">
+					<div className="info-list-card">
 						<h2 className="before-vote-heading">Before You Vote</h2>
 						{infoData.map((item, idx) => (
 							<div key={idx} className="info-item">
@@ -76,13 +76,14 @@ const Welcome = () => {
 					</div>
 				</section>
 			
-				<button
-				style={{ marginTop: "32px" }}
-					className="button"
-					onClick={() => navigate("/private-mode")}
-				>
-					Login to Vote
-				</button>
+				<div className="login-button-container">
+					<button 
+						className="button welcome-button"
+						onClick={() => navigate("/private-mode")}
+					>
+						Login to Vote
+					</button>
+				</div>
 			</main>
 			<Footer />
 		</div>

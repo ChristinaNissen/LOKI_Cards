@@ -124,12 +124,7 @@
   .card-wide.voted-before{
     width: 100vw;
     max-width: 90%;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 30px;
-    margin-bottom: 0px;
+    margin-top: 12px;
     box-sizing: border-box;
   }
 
@@ -148,6 +143,15 @@
 
   .text-main.text-voted-before{
         text-align:center !important;
+  }
+
+  .security-box-voted-before{
+    width: 100vw;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px 8px;
+    box-sizing: border-box
   }
 
 

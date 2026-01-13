@@ -64,7 +64,7 @@ const BallotConfirmation = ({ type = "card", ballotNumber = 12345, isLoggedIn, s
          <div className="intro-container">
           <h1 className="intro-title">Confirmation</h1>
           <div className="text-main text-main-confirmation">
-You have cast your ballot successfully! Below is your card for this ballot.
+You have cast your ballot successfully! Below is a visual presentation of your cast ballot.
           </div>
           <div className="security-box-confirmation">
             <p className="text-small">
