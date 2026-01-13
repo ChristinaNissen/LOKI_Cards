@@ -161,7 +161,7 @@ function generateRandomCard() {
   return { numberOfEmojis, emojiRef, colorRef, config };
 }
 
-const PAGE_SIZE = 39;
+const PAGE_SIZE = 42;
 function getInitialCards() {
   // Generate 47 random cards
   const randomCards = Array.from({ length: 47 }, generateRandomCard);
