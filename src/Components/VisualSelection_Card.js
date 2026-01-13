@@ -155,7 +155,7 @@ function getEmojiGridConfig(n) {
 function generateRandomCard() {
   const numberOfEmojis = Math.floor(Math.random() * 9) + 1;
   const emojiRef = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
-  const colorObj = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)];
+  const colorObj = GENERATION_COLOR_LIST[Math.floor(Math.random() * GENERATION_COLOR_LIST.length)];
   const colorRef = colorObj.hex;
   const config = getEmojiGridConfig(numberOfEmojis);
   return { numberOfEmojis, emojiRef, colorRef, config };
@@ -176,7 +176,6 @@ function getInitialCards() {
 const COLOR_LIST = [
   { name: "Red", hex: "#ff0000" },
   { name: "Blue", hex: "#0000ff" },
-  { name: "Green", hex: "#28d328ff" },
   { name: "Orange", hex: "#ffa500" },
   { name: "Yellow", hex: "#fefe43ff" },
   { name: "Purple", hex: "#800080" },
@@ -203,6 +202,7 @@ const COLOR_LIST = [
   { name: "Rust", hex: "#b7410e" },
   { name: "Indigo", hex: "#4b0082" },
   { name: "Ruby", hex: "#e0115f" },
+  { name: "Green", hex: "#28d328ff" },
   { name: "Lime Green", hex: "#32cd32" },
   { name: "Salmon", hex: "#fa8072" },
   { name: "Azure", hex: "#007fff" },
@@ -237,6 +237,9 @@ const COLOR_LIST = [
   { name: "Umber", hex: "#635147" }
 ];
 
+// Colors available for generating new random cards (excludes legacy colors like "Green")
+const GENERATION_COLOR_LIST = COLOR_LIST.filter(c => c.name !== "Green");
+
 const blackTextColors = [
   "Yellow",
   "Orange",
@@ -249,8 +252,12 @@ const blackTextColors = [
   "Mauve",
   "Cyan",
   "Peach",
-  "Lime Green",
   "Salmon",
+  "Green",
+  "Lime Green",
+  "Cherry Red",
+  "Magenta",
+  "Fuschia",
   "Beige",
   "Turquoise",
   "Aqua",

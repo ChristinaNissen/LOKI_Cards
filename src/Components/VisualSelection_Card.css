@@ -679,6 +679,49 @@
     padding: 12px !important;
   }
 
+  .visual-selection-grid .visual-selection-item {
+    font-size: 16px !important;
+    min-width: 35px !important;
+    min-height: 35px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="1"] .confirmation-emoji {
+    font-size: 64px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="2"] .confirmation-emoji {
+    font-size: 44px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="3"] .confirmation-emoji,
+  .visual-selection-grid .confirmation-card[data-emoji-count="4"] .confirmation-emoji,
+  .visual-selection-grid .confirmation-card[data-emoji-count="5"] .confirmation-emoji,
+  .visual-selection-grid .confirmation-card[data-emoji-count="6"] .confirmation-emoji {
+    font-size: 36px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="7"] .confirmation-emoji,
+  .visual-selection-grid .confirmation-card[data-emoji-count="8"] .confirmation-emoji {
+    font-size: 24px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="9"] .confirmation-emoji {
+    font-size: 18px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="5"] .emoji-area {
+    left: 20px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="8"] .emoji-area {
+    top: 10px !important;
+  }
+
+  .visual-selection-grid .confirmation-card[data-emoji-count="7"] .confirmation-emoji-grid,
+  .visual-selection-grid .confirmation-card[data-emoji-count="8"] .confirmation-emoji-grid {
+    gap: 8px !important;
+  }
+
   .card-corner {
     font-size: 1.2rem !important;
   }
@@ -714,6 +757,15 @@
 
   .card-filter-row {
     width: 100% !important;
+  }
+
+  /* Reorder filters in responsive: Number, Emoji, Color */
+  .card-filter-row .card-filter-input:nth-child(2) {
+    order: 3;
+  }
+  
+  .card-filter-row .card-filter-input:nth-child(3) {
+    order: 2;
   }
 
   .card-filter-input {
@@ -807,6 +859,45 @@
   .preview-item .card-corner-bottom-right {
     bottom: 6px !important;
     right: 8px !important;
+  }
+
+  /* Match emoji sizes from grid */
+  .preview-item .confirmation-card[data-emoji-count="1"] .confirmation-emoji {
+    font-size: 64px !important;
+  }
+
+  .preview-item .confirmation-card[data-emoji-count="2"] .confirmation-emoji {
+    font-size: 44px !important;
+  }
+
+  .preview-item .confirmation-card[data-emoji-count="3"] .confirmation-emoji,
+  .preview-item .confirmation-card[data-emoji-count="4"] .confirmation-emoji,
+  .preview-item .confirmation-card[data-emoji-count="5"] .confirmation-emoji,
+  .preview-item .confirmation-card[data-emoji-count="6"] .confirmation-emoji {
+    font-size: 36px !important;
+  }
+
+  .preview-item .confirmation-card[data-emoji-count="7"] .confirmation-emoji,
+  .preview-item .confirmation-card[data-emoji-count="8"] .confirmation-emoji {
+    font-size: 24px !important;
+  }
+
+  .preview-item .confirmation-card[data-emoji-count="9"] .confirmation-emoji {
+    font-size: 18px !important;
+  }
+
+  /* Match positioning from grid */
+  .preview-item .confirmation-card[data-emoji-count="5"] .emoji-area {
+    left: 20px !important;
+  }
+
+  .preview-item .confirmation-card[data-emoji-count="8"] .emoji-area {
+    top: 10px !important;
+  }
+
+  .preview-item .confirmation-card[data-emoji-count="7"] .confirmation-emoji-grid,
+  .preview-item .confirmation-card[data-emoji-count="8"] .confirmation-emoji-grid {
+    gap: 8px !important;
   }
 
   /* Pagination buttons responsive */
