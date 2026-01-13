@@ -250,13 +250,23 @@ section.card:hover {
 .login-button-container{
     width: 100%;
   max-width: 800px; /* Match the card-wide max-width */
-    margin: 36px auto 0 auto;
+    margin: 30px auto 0 auto;
   padding: 0 20px; /* Side spacing */
   box-sizing: border-box;
-  align-items:center;
+
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+
+.welcome-button{
+  width: auto;
+    max-width: 60vw;
+    min-width: 120px;
+    margin: 0 auto!important;
+    display: block!important;
+    text-align: center;
+    padding: 12px 24px!important;
 }
 
 /* Overview image styling */
