@@ -161,16 +161,37 @@ function generateRandomCard() {
   return { numberOfEmojis, emojiRef, colorRef, config };
 }
 
+function areCardsEqual(card1, card2) {
+  return card1.numberOfEmojis === card2.numberOfEmojis &&
+         card1.emojiRef === card2.emojiRef &&
+         card1.colorRef.toLowerCase() === card2.colorRef.toLowerCase();
+}
+
 const PAGE_SIZE = 42;
 function getInitialCards() {
-  // Generate 47 random cards
-  const randomCards = Array.from({ length: 47 }, generateRandomCard);
+  // Generate 499 unique random cards
+  const randomCards = [];
+  const maxAttempts = 10000; // Prevent infinite loops
+  let attempts = 0;
+  let cardId = 0;
 
-  // Insert staticCard at a random position
-  const insertIndex = Math.floor(Math.random() * 48);
-  randomCards.splice(insertIndex, 0, staticCard);
+  while (randomCards.length < 499 && attempts < maxAttempts) {
+    const newCard = generateRandomCard();
+    // Check if this card is unique (not matching staticCard or any existing card)
+    const isDuplicate = areCardsEqual(newCard, staticCard) ||
+                        randomCards.some(card => areCardsEqual(card, newCard));
+    
+    if (!isDuplicate) {
+      randomCards.push({ ...newCard, id: cardId++ });
+    }
+    attempts++;
+  }
 
-  return randomCards; // Now always 50 cards, staticCard included
+  // Insert staticCard at a random position among the 500 cards
+  const insertIndex = Math.floor(Math.random() * 500);
+  randomCards.splice(insertIndex, 0, { ...staticCard, id: cardId++ });
+
+  return randomCards; // Now always 500 cards total, staticCard included
 }
 
 const COLOR_LIST = [
@@ -288,7 +309,7 @@ const VisualSelection = () => {
   const steps = userSelectedYes ? stepsYes : stepsNo;
   const currentStep = userSelectedYes ? 2 : 0;
 
-  const [cards, setCards] = useState(() => getInitialCards());
+  const [cards] = useState(() => getInitialCards());
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [showError, setShowError] = useState(false);
@@ -301,21 +322,6 @@ const VisualSelection = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  useEffect(() => {
-  const interval = setInterval(() => {
-    setCards(prevCards => {
-      const remaining = 94 - prevCards.length;
-      if (remaining <= 0) {
-        clearInterval(interval);
-        return prevCards;
-      }
-      const count = Math.min(9, remaining);
-      return [...prevCards, ...Array.from({ length: count }, generateRandomCard)];
-    });
-  }, 60000);
-  return () => clearInterval(interval);
-}, []);
 
   useEffect(() => {
     // Fetch the visual representation when the component mounts
@@ -351,9 +357,9 @@ const VisualSelection = () => {
   const totalPages = Math.ceil(filteredCards.length / PAGE_SIZE);
   const pagedCards = filteredCards.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
-  const handleSelect = (idx) => {
+  const handleSelect = (cardId) => {
     setSelected(prev =>
-      prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]
+      prev.includes(cardId) ? prev.filter(i => i !== cardId) : [...prev, cardId]
     );
   };
 
@@ -370,9 +376,9 @@ const VisualSelection = () => {
 
   // When user confirms, navigate to voting
   const confirmSelection = async () => {
-    // Gather selected card features (number, emoji, colorRef as hex) - use filteredCards
-    const selectedCardFeatures = selected.map(idx => {
-      const card = filteredCards[idx];
+    // Gather selected card features (number, emoji, colorRef as hex) - use original cards array
+    const selectedCardFeatures = selected.map(cardId => {
+      const card = cards.find(c => c.id === cardId);
       if (!card) return null;
       return {
         numberOfEmojis: card.numberOfEmojis,
@@ -442,8 +448,103 @@ const VisualSelection = () => {
       };
     });
 
-  const emojiOptions = [...new Set(cards.map(card => card.emojiRef))]
-    .map(emoji => ({ value: emoji, label: emoji }));
+  // Get unique emojis from the generated cards
+  const uniqueEmojisInCards = new Set(cards.map(card => card.emojiRef));
+  
+  // Organized emoji categories - only include emojis that exist in generated cards
+  const smileyEmojis = [
+    "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇",
+    "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚",
+    "😋", "😛", "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🤫", "🤔",
+    "🤐", "🤨", "😐", "😑", "😶", "😏", "😒", "🙄", "😬", "🤥",
+    "😔", "😪", "🤤", "😴", "😷", "🤒", "🤕", "🤢", "🤮", "🤧",
+    "🥵", "🥶", "🥴", "😵", "🤯", "🤠", "🥳", "😎", "🤓", "🧐",
+    "😕", "😟", "🙁", "☹️", "😮", "😯", "😲", "😳", "🥺", "😦",
+    "😧", "😨", "😰", "😥", "😢", "😭", "😱", "😖", "😣", "😞",
+    "😓", "😩", "😫", "🥱", "😤", "😡", "😠", "🤬", "😈", "👿",
+    "💀", "☠️", "🤡", "👹", "👺", "👻", "👽", "👾", "🤖"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const animalEmojis = [
+    "🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨",
+    "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵", "🙈", "🙉", "🙊",
+    "🐒", "🐔", "🐧", "🐦", "🐤", "🐣", "🐥", "🦆", "🦅", "🦉",
+    "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🪱", "🐛", "🦋", "🐌",
+    "🐞", "🐜", "🪰", "🪲", "🪳", "🦟", "🦗", "🕷️", "🕸️", "🦂",
+    "🐢", "🐍", "🦎", "🦖", "🦕", "🐙", "🦑", "🦐", "🦞", "🦀",
+    "🐡", "🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🐊", "🐅", "🐆",
+    "🦓", "🦍", "🦧", "🐘", "🦣", "🦛", "🦏", "🐪", "🐫", "🦒",
+    "🦘", "🦬", "🐃", "🐂", "🐄", "🐎", "🐖", "🐏", "🐑", "🦙",
+    "🐐", "🦌", "🐕", "🐩", "🦮", "🐕‍🦺", "🐈", "🐈‍⬛", "🪶", "🐓",
+    "🦃", "🦤", "🦚", "🦜", "🦢", "🦩", "🕊️", "🐇", "🦝", "🦨",
+    "🦡", "🦫", "🦦", "🦥", "🐁", "🐀", "🐿️", "🦔"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const foodEmojis = [
+    "🍏", "🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓", "🫐",
+    "🍈", "🍒", "🍑", "🥭", "🍍", "🥥", "🥝", "🍅", "🍆", "🥑",
+    "🥦", "🥬", "🥒", "🌶️", "🫑", "🌽", "🥕", "🫒", "🧄", "🧅",
+    "🥔", "🍠", "🥐", "🥯", "🍞", "🥖", "🥨", "🥞", "🧇", "🧀",
+    "🍖", "🍗", "🥩", "🥓", "🍔", "🍟", "🍕", "🌭", "🥪", "🌮",
+    "🌯", "🫔", "🥙", "🧆", "🥚", "🍳", "🥘", "🍲", "🫕", "🥣",
+    "🥗", "🍿", "🧈", "🧂", "🥫", "🍱", "🍘", "🍙", "🍚", "🍛",
+    "🍜", "🍝", "🍠", "🍢", "🍣", "🍤", "🍥", "🥮", "🍡", "🥟",
+    "🥠", "🥡", "🦪", "🍦", "🍧", "🍨", "🍩", "🍪", "🎂", "🍰",
+    "🧁", "🥧", "🍫", "🍬", "🍭", "🍮", "🍯", "🍼", "🥛", "☕",
+    "🫖", "🍵", "🍶", "🍾", "🍷", "🍸", "🍹", "🍺", "🍻", "🥂",
+    "🥃", "🫗", "🥤", "🧋", "🧃", "🧉", "🧊"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const activityEmojis = [
+    "⚽", "🏀", "🏈", "⚾", "🥎", "🎾", "🏐", "🏉", "🥏", "🎱",
+    "🪀", "🏓", "🏸", "🥅", "🏒", "🏑", "🥍", "🏏", "🪃", "🥌",
+    "🛷", "⛸️", "🥊", "🥋", "🥇", "🥈", "🥉", "🏆", "🎽", "🎿",
+    "🛼", "🛹", "🛶", "⛵", "🚤", "🛥️", "🛳️", "⛴️", "🚢", "✈️",
+    "🛩️", "🛫", "🛬", "🪂", "💺", "🚁", "🚟", "🚠", "🚡", "🛰️",
+    "🚀", "🛸"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const objectEmojis = [
+    "⌚", "📱", "📲", "💻", "⌨️", "🖥️", "🖨️", "🖱️", "🖲️", "🕹️",
+    "🗜️", "💽", "💾", "💿", "📀", "📼", "📷", "📸", "📹", "🎥",
+    "📽️", "🎞️", "📞", "☎️", "📟", "📠", "📺", "📻", "🎙️", "🎚️",
+    "🎛️", "⏱️", "⏲️", "⏰", "🕰️", "⌛", "⏳", "📡", "🔋", "🔌",
+    "💡", "🔦", "🕯️", "🪔", "🧯", "🛢️", "💸", "💵", "💴", "💶",
+    "💷", "🪙", "💰", "💳", "🧾", "💎", "⚖️", "🔧", "🔨", "⚒️",
+    "🛠️", "⛏️", "🔩", "⚙️", "⚗️", "🧪", "🧫", "🧬", "🔬", "🔭",
+    "💉", "💊", "🩸", "🩹", "🩺", "🚪", "🛏️", "🛋️", "🪑", "🚽",
+    "🚿", "🛁", "🪒", "🧴", "🧷", "🧹", "🧺", "🧻", "🪣", "🧼",
+    "🪥", "🧽", "🛒", "🚬", "⚰️", "🪦", "⚱️", "🏺"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const symbolEmojis = [
+    "🌟", "🍀", "🔥", "🎈", "🌸", "⚡", "✨", "💫", "⭐", "🌈",
+    "☀️", "🌙", "💥", "🎉", "🎊", "🎁", "🏆"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const handEmojis = [
+    "👋", "🤚", "🖐️", "✋", "🖖", "👌", "🤌", "🤏", "✌️", "🤞",
+    "🫰", "🤟", "🤘", "🤙", "🫵", "🫱", "🫲", "🫳", "🫴", "👏",
+    "🙌", "👐", "🤲", "🤝", "🙏", "✍️", "💅", "🤳", "💪", "🦾",
+    "🦵", "🦶", "👂", "🦻", "👃", "🧠", "🦷", "🦴", "👀", "👁️",
+    "👅", "👄", "🫦"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const flagEmojis = [
+    "🇺🇸", "🇬🇧", "🇨🇦", "🇦🇺", "🇫🇷", "🇩🇪", "🇮🇹", "🇪🇸", "🇯🇵", "🇨🇳",
+    "🇰🇷", "🇧🇷", "🇮🇳", "🇷🇺", "🇿🇦"
+  ].filter(e => uniqueEmojisInCards.has(e));
+  
+  const emojiOptions = [
+    smileyEmojis.length > 0 && { label: "😊 Smileys & Emotion", options: smileyEmojis.map(e => ({ value: e, label: e })) },
+    animalEmojis.length > 0 && { label: "🐶 Animals & Nature", options: animalEmojis.map(e => ({ value: e, label: e })) },
+    foodEmojis.length > 0 && { label: "🍎 Food & Drink", options: foodEmojis.map(e => ({ value: e, label: e })) },
+    activityEmojis.length > 0 && { label: "⚽ Activities", options: activityEmojis.map(e => ({ value: e, label: e })) },
+    objectEmojis.length > 0 && { label: "⌚ Objects", options: objectEmojis.map(e => ({ value: e, label: e })) },
+    handEmojis.length > 0 && { label: "👋 Body Parts", options: handEmojis.map(e => ({ value: e, label: e })) },
+    symbolEmojis.length > 0 && { label: "🌟 Symbols", options: symbolEmojis.map(e => ({ value: e, label: e })) },
+    flagEmojis.length > 0 && { label: "🇺🇸 Flags", options: flagEmojis.map(e => ({ value: e, label: e })) }
+  ].filter(Boolean);
 
   return (
     <div className="page-wrapper">
@@ -520,11 +621,10 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
       <Select
         className="card-filter-input"
         options={emojiOptions}
-        value={emojiOptions.find(opt => opt.value === emojiFilter) || null}
+        value={emojiOptions.flatMap(g => g.options).find(opt => opt.value === emojiFilter) || null}
         onChange={opt => setEmojiFilter(opt ? opt.value : "")}
         placeholder="Emoji"
         isClearable
-        isSearchable
         menuPortalTarget={document.body}
         styles={{
           menuPortal: base => ({ ...base, zIndex: 9999 }),
@@ -581,7 +681,6 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
     </p>
   ) : (
     pagedCards.map((card, idx) => {
-      const globalIdx = page * PAGE_SIZE + idx;
       // Find the color object for this card
       const colorObj = COLOR_LIST.find(c => c.hex.toLowerCase() === card.colorRef.toLowerCase()) || { name: "Color", hex: card.colorRef };
       const emojiNames = {
@@ -594,16 +693,16 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
       const cardLabel = `${colorObj.name} card with ${card.numberOfEmojis} ${card.emojiRef} ${emojiName}${card.numberOfEmojis > 1 ? "s" : ""}`;
       const numberTextColor = blackTextColors.includes(colorObj.name) ? "#000" : "#fff";
       return (
-        <div className="visual-selection-card-container" key={globalIdx}>
+        <div className="visual-selection-card-container" key={card.id}>
           <div
-            className={`confirmation-card visual-selection-item${selected.includes(globalIdx) ? " selected" : ""}`}
+            className={`confirmation-card visual-selection-item${selected.includes(card.id) ? " selected" : ""}`}
             data-emoji-count={card.numberOfEmojis}
             style={{
               backgroundColor: card.colorRef,
               position: "relative",
               cursor: "pointer"
             }}
-            onClick={() => handleSelect(globalIdx)}
+            onClick={() => handleSelect(card.id)}
           >
             <span
               className="card-corner card-corner-top-left"
@@ -722,8 +821,8 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
     marginBottom: 8,
     maxHeight: "50vh"
   }}>
-    {selected.map(idx => {
-                  const card = filteredCards[idx];
+    {selected.map(cardId => {
+                  const card = cards.find(c => c.id === cardId);
                   if (!card) return null; // Safety check
                   const colorObj = COLOR_LIST.find(c => c.hex.toLowerCase() === card.colorRef.toLowerCase()) || { name: "Color", hex: card.colorRef };
                   const emojiNames = {
@@ -737,7 +836,7 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
                   const numberTextColor = blackTextColors.includes(colorObj.name) ? "#000" : "#fff";
                   return (
                     <div
-                      key={idx}
+                      key={cardId}
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -755,7 +854,7 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
                       >
                         <button
                           onClick={() => {
-                            setSelected(prev => prev.filter(i => i !== idx));
+                            setSelected(prev => prev.filter(i => i !== cardId));
                           }}
                           style={{
                             position: "absolute",
