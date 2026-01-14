@@ -17,6 +17,7 @@ const Login = ({ setIsLoggedIn }) => {
   const [passwordError, setPasswordError] = useState("");
   const [showStudyModal, setShowStudyModal] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   
   // Secret salt for hashing - in production, this should be in an environment variable
@@ -46,6 +47,7 @@ const Login = ({ setIsLoggedIn }) => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  setIsLoading(true);
   let hasError = false;
 
   if (!userID.trim()) {
@@ -62,20 +64,25 @@ const handleSubmit = async (e) => {
     setPasswordError("");
   }
 
-  if (!hasError) {
-    try {
-      // Hash the UserID and Password before sending to API
-      const hashedUserID = await hashUserID(userID);
-      const hashedPassword = await hashPassword(password);
-      
-      console.log("Attempting login...");
-      // Try to log in first
-      await loginVoter(hashedUserID, hashedPassword);
-      console.log("Login successful");
-      setIsLoggedIn(true);
-      navigate("/votedbefore");
-    } catch (error) {
-      console.log("Login error:", error);
+  if (hasError) {
+    setIsLoading(false);
+    return;
+  }
+
+  try {
+    // Hash the UserID and Password before sending to API
+    const hashedUserID = await hashUserID(userID);
+    const hashedPassword = await hashPassword(password);
+    
+    console.log("Attempting login...");
+    // Try to log in first
+    await loginVoter(hashedUserID, hashedPassword);
+    console.log("Login successful");
+    setIsLoggedIn(true);
+    navigate("/votedbefore");
+  } catch (error) {
+    setIsLoading(false);
+    console.log("Login error:", error);
       // If login fails, try to sign up
       if (
         error.message.includes("Invalid username/password") ||
@@ -124,7 +131,6 @@ const handleSubmit = async (e) => {
         setPasswordError(`Login failed: ${error.message || "Please try again."}`);
       }
     }
-  }
 };
 
   return (
@@ -177,8 +183,15 @@ const handleSubmit = async (e) => {
           </div>
             {passwordError && <div className="login-error">{passwordError}</div>}
 
-            <button type="submit" className="button button-login">
-              Login
+            <button type="submit" className="button button-login" disabled={isLoading}>
+              {isLoading ? (
+                <div className="spinner-container">
+                  <div className="spinner"></div>
+                  <span>Logging in...</span>
+                </div>
+              ) : (
+                "Login"
+              )}
             </button>
           </form>
         </div>
