@@ -657,9 +657,9 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
               {selected.length} selected
             </div>
             
-            <p className="scroll-instruction-text">
-              Scroll through the cards and use the arrows below to see more.
-            </p>
+            <div className="page-counter-badge">
+              Showing {page * PAGE_SIZE + 1}-{Math.min((page + 1) * PAGE_SIZE, filteredCards.length)} of {filteredCards.length} pictures
+            </div>
           </div>
 
           {/* Wrap the grid with a container */}
@@ -766,10 +766,13 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
             </div>
           </div>
           {/* Navigation buttons below */}
-          <div className="pagination-buttons" style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "16px" }}>
+          <div className="pagination-buttons">
             <button className="button" onClick={() => setPage(page - 1)} disabled={page === 0} aria-label="Previous page">
               ←
             </button>
+              <span className="page-counter">
+              Page {page + 1} of {totalPages}
+            </span>
             <button className="button" onClick={() => setPage(page + 1)} disabled={page >= totalPages - 1} aria-label="Next page">
               →
             </button>

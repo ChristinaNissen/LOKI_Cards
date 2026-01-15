@@ -1,4 +1,22 @@
 
+
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 0px;
+}
+
+.page-counter {
+  min-width: 100px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  margin-top:24px;
+}
+
 /* Shift emoji grid left for cards with 5 emojis in non-responsive design */
 .confirmation-card[data-emoji-count="5"] .emoji-area {
   left: 20px !important;
@@ -331,15 +349,6 @@
   box-sizing: border-box;
 }
 
-/* Scroll instruction text */
-.scroll-instruction-text {
-  text-align: left;
-  font-size: 0.95rem;
-  color: #666;
-  margin: 0;
-  padding: 0;
-  line-height: 1.4;
-}
 
 /* Hide scroll instruction in normal design */
 .scroll-instruction {
@@ -349,7 +358,7 @@
   text-align: center;
   font-weight: bold;
   margin-top: 10px;
-  font-size: 1.1rem;
+  font-size: 17.6px;
   color: #222;
   background: rgba(255,255,255,0.85);
   border-radius: 4px;
@@ -382,7 +391,7 @@
 .card-filter-label {
   font-weight: 500;
   color: #444;
-  font-size: 1rem;
+  font-size: 17.6px;
   min-width: 150px;
 }
 
@@ -601,7 +610,7 @@
   .selected-count-inside {
     font-size: 15.52px !important;
     padding: 10px 20px !important;
-    width: auto !important;
+    width: 100% !important;
     max-width: 95% !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
@@ -609,19 +618,22 @@
     font-weight: 600 !important;
   }
 
+  .page-counter-badge {
+    display: none !important;
+  }
+
+
   .scroll-instruction-text {
     display: none !important;
   }
 
   .selected-scroll-wrapper {
-    order: 10 !important;
-    flex-direction: row !important;
-    gap: 0 !important;
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
     margin-bottom: 16px !important;
     margin-top: 20px !important;
+    max-width: 100% !important;
   }
 
   /* Fix instruction list to stay inside container */
@@ -746,7 +758,7 @@
   .card-filter-card {
     width: 95% !important;
     max-width: 95% !important;
-    margin: 0 auto 18px auto !important;
+    margin: 0 auto 0px auto !important;
     padding: 12px 10px !important;
     box-sizing: border-box !important;
   }
@@ -900,14 +912,20 @@
     gap: 8px !important;
   }
 
-  /* Pagination buttons responsive */
+   /* Pagination buttons responsive */
   .pagination-buttons {
     flex-direction: row !important;
-    gap: 16px !important;
+    gap: 12px !important;
     width: auto !important;
-    margin: 0 auto 16px auto !important;
+    margin: 16px auto !important;
     justify-content: center !important;
     order: 11 !important;
+    flex-wrap: wrap !important;
+  }
+
+  .pagination-buttons .page-counter {
+    min-width: 100px !important;
+    font-size: 14px !important;
   }
 
   .pagination-buttons .button {
@@ -937,4 +955,21 @@
   left: 30px !important;
 }
 
+}
+
+/* Page counter badge styling */
+.page-counter-badge {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666 !important;
+  background-color: #fafbfc !important;  
+  padding: 8px 16px!important;
+  border-radius: 6px;
+  text-align: center;
+  border: 1.5px solid #d1d5db !important;
+  border-radius: 6px !important;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-top:12px;
+  margin-bottom:12px;
 }
