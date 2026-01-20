@@ -809,7 +809,7 @@ Identification of <span className="break-responsive">Previously Cast Ballots</sp
   overflow: "hidden"
 }}>
   <p style={{fontSize: "18px", fontWeight: "bold"}}>
-                Please review your selected cards below
+                Please review your selected card(s) below
               </p>
                <p style={{fontSize: "16px", marginTop: "0px", marginBottom: "16px"}}>
                 Once confirmed, you will not receive feedback on whether your selection is correct. <br></br>If your selection is incorrect, your vote will <strong>NOT be updated</strong>.
